@@ -58,10 +58,7 @@ namespace ListaTopic
             if (Acceso == true)
             {
                 this.pictureBox1.BackgroundImage = System.Drawing.Image.FromFile("Resources\\LampadinaAccesa.jpg");
-
-               // this.pictureBox1.Load("Resources\\LampadinaAccesa.jpg");
-                //pictureBox1.Image= Properties.Resources.LampadinaAccesa.jpg;
-            }
+         }
             else
             {
                 this.pictureBox1.Load("Resources\\LampadinaSpenta.jpg");
