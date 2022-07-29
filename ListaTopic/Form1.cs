@@ -163,6 +163,8 @@ namespace ListaTopic
             }
             //homeassistant / light / 
             StatoLuce = "ON";
+            DisattivaAccendi();
+            AttivaSpegni();
         }
 
         private void btnAccendiTutto_Click(object sender, EventArgs e)
@@ -462,7 +464,9 @@ namespace ListaTopic
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
                 }
             }
-               
+            StatoLuce = "OFF";
+            AttivaAccendi();
+            DisattivaSpegni();
         }
 
         private void btnSpegniTutto_Click(object sender, EventArgs e)

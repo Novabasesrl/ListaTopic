@@ -292,6 +292,22 @@ namespace ListaTopic
             //Percentuale = frm.Percentuale;
             ucLuceLampadario.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucLuceLampadario.SetImmagine(Immagine);
+
         }
 
         private void ucLuceCucina_Click(object sender, EventArgs e)
@@ -308,6 +324,21 @@ namespace ListaTopic
             ucLuceCucina.SetLuminosità(frm.Percentuale);
 
             //Percentuale = frm.Percentuale;
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucLuceCucina.SetImmagine(Immagine);
         }
 
         private void ucFarettiAurelio_Click(object sender, EventArgs e)
@@ -323,6 +354,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucFarettiAurelio.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucFarettiAurelio.SetImmagine(Immagine);
         }
 
         private void ucScrivaniaAurelio_Click(object sender, EventArgs e)
@@ -338,6 +384,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucScrivaniaAurelio.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucScrivaniaAurelio.SetImmagine(Immagine);
         }
 
         private void ucFarettiClaudio_Click(object sender, EventArgs e)
@@ -353,6 +414,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucFarettiClaudio.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucFarettiClaudio.SetImmagine(Immagine);
         }
 
         private void ucClaudioSopra_Click(object sender, EventArgs e)
@@ -367,6 +443,22 @@ namespace ListaTopic
 
             frm.ShowDialog();
             ucClaudioSopra.SetLuminosità(frm.Percentuale);
+
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucClaudioSopra.SetImmagine(Immagine);
 
         }
 
@@ -383,6 +475,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucClaudioSotto1.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucClaudioSotto1.SetImmagine(Immagine);
         }
 
         private void ucClaudioSotto2_Click(object sender, EventArgs e)
@@ -398,6 +505,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucClaudioSotto2.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucClaudioSotto2.SetImmagine(Immagine);
         }
 
 
@@ -419,6 +541,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucFarettiUffici12.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucFarettiUffici12.SetImmagine(Immagine);
 
         }
 
@@ -435,6 +572,22 @@ namespace ListaTopic
             frm.ShowDialog();
             ucFarettiUffici34.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucFarettiUffici34.SetImmagine(Immagine);
+
         }
 
         private void ucScrivaniaGianluca_Click(object sender, EventArgs e)
@@ -450,6 +603,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucScrivaniaGianluca.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucScrivaniaGianluca.SetImmagine(Immagine);
         }
 
         private void ucScrivaniaMattia_Click(object sender, EventArgs e)
@@ -465,6 +633,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucScrivaniaMattia.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucScrivaniaMattia.SetImmagine(Immagine);
         }
 
         private void ucScrivaniaPaolo_Click(object sender, EventArgs e)
@@ -480,6 +663,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucScrivaniaPaolo.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucScrivaniaPaolo.SetImmagine(Immagine);
         }
 
 
@@ -501,6 +699,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucLedReception.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucLedReception.SetImmagine(Immagine);
         }
 
         private void ucScrivaniaAnna_Click(object sender, EventArgs e)
@@ -516,6 +729,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucScrivaniaAnna.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucScrivaniaAnna.SetImmagine(Immagine);
         }
 
         private void ucScrivaniaDoraSopra_Click(object sender, EventArgs e)
@@ -531,6 +759,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucScrivaniaDoraSopra.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucScrivaniaDoraSopra.SetImmagine(Immagine);
         }
 
         private void ucScrivaniaDoraSotto_Click(object sender, EventArgs e)
@@ -546,6 +789,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucScrivaniaDoraSotto.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucScrivaniaDoraSotto.SetImmagine(Immagine);
         }
 
         private void ucScrivaniaDoraSotto2_Click(object sender, EventArgs e)
@@ -560,7 +818,22 @@ namespace ListaTopic
 
             frm.ShowDialog();
             ucScrivaniaDoraSotto2.SetLuminosità(frm.Percentuale);
-            
+
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucScrivaniaDoraSotto2.SetImmagine(Immagine);
         }
 
         private void ucFarettiLedReception_Click(object sender, EventArgs e)
@@ -576,7 +849,21 @@ namespace ListaTopic
             frm.ShowDialog();
             ucFarettiLedReception.SetLuminosità(frm.Percentuale);
 
+            string Stato;
+            Stato = frm.StatoLuce;
 
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucFarettiLedReception.SetImmagine(Immagine);
         }
 
         private void ucLuceAscensore_Click(object sender, EventArgs e)
@@ -591,6 +878,22 @@ namespace ListaTopic
             ucLuceAscensore.SetLuminosità(frm.Percentuale);
 
             frm.ShowDialog();
+
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucLuceAscensore.SetImmagine(Immagine);
         }
 
         private void ucLuceSalaQuadro_Click(object sender, EventArgs e)
@@ -606,6 +909,22 @@ namespace ListaTopic
             frm.ShowDialog();
             ucLuceSalaQuadro.SetLuminosità(frm.Percentuale);
 
+
+            string Stato;
+            Stato = frm.StatoLuce;
+
+            bool Immagine = false;
+
+            if (Stato == "ON")
+            {
+                Immagine = true;
+            }
+            else
+            {
+                Immagine = false;
+            }
+
+            ucLuceSalaQuadro.SetImmagine(Immagine);
         }
 
         private void ucFioriera_Click(object sender, EventArgs e)
@@ -622,7 +941,20 @@ namespace ListaTopic
             ucFioriera.SetLuminosità(frm.Percentuale);
         }
 
-#endregion
+        private void ucLuceLedScale_Click(object sender, EventArgs e)
+        {
+            string TopicSalaRiunioni;
+
+            TopicSalaRiunioni = "homeassistant/light/D2_A006";
+            TopicSalaRiunioni += "/set";
+
+            Form1 frm = new Form1();
+            frm.TopicSpecifico = TopicSalaRiunioni;
+
+            frm.ShowDialog();
+            ucLuceLedScale.SetLuminosità(frm.Percentuale);
+        }
+        #endregion
 
 
         #region "Bagno
@@ -711,6 +1043,7 @@ namespace ListaTopic
 
         #endregion
 
+
         #region "bagno magazzino"
         //string TopicSalaRiunioni;
 
@@ -725,6 +1058,21 @@ namespace ListaTopic
         //ucBagnoMagazzino.SetLuminosità(frm.Percentuale);
         //
         //
+//        string Stato;
+//        Stato = frm.StatoLuce;
+
+//            bool Immagine = false;
+
+//            if (Stato == "ON")
+//            {
+//                Immagine = true;
+//            }
+//            else
+//            {
+//                Immagine = false;
+//            }
+
+//ucLuceLedSalaRiunioni.SetImmagine(Immagine);
         #endregion
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -767,18 +1115,6 @@ namespace ListaTopic
             //}
         }
 
-        private void ucLuceLedScale_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A006";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLuceLedScale.SetLuminosità(frm.Percentuale);
-        }
+        
     }
 }

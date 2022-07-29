@@ -30,9 +30,6 @@ namespace ListaTopic
 
         }
 
-        //clsConn Conn;
-        //List<configurazioni_luci> Lista = new List<configurazioni_luci>();
-
         private void ucBottoneLuce_Load(object sender, EventArgs e)
         {
 
@@ -58,15 +55,16 @@ namespace ListaTopic
             if (Acceso == true)
             {
                 this.pictureBox1.BackgroundImage = System.Drawing.Image.FromFile("Resources\\LampadinaAccesa.jpg");
-         }
+            }
             else
             {
-                this.pictureBox1.Load("Resources\\LampadinaSpenta.jpg");
-
-                //pictureBox1.Image = Properties.Resources.LampadinaSpenta.jpg;
-
+                this.pictureBox1.BackgroundImage = System.Drawing.Image.FromFile("Resources\\LampadinaSpenta.jpg");
             }
         }
+
+
+
+
 
 
 
