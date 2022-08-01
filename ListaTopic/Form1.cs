@@ -38,14 +38,27 @@ namespace ListaTopic
         public string TopicSpecifico;
         public int Percentuale;
         public string StatoLuce;
+        public string Luce;
+
+
+
+        public void Init(MqttClient _mqttClient, List<Dati> _DatiLuci, List<configurazioni_luci> _ConfigLuci)
+        {
+            mqttClient = _mqttClient;
+            DatiLuci = _DatiLuci;
+            Lista = _ConfigLuci;
+            listBox2.Items.Clear();
+            foreach(Dati ilDato in DatiLuci) listBox2.Items.Add(ilDato);
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            mqttClient = new MqttClient("192.168.46.133", 1883, false, null, null, MqttSslProtocols.None);
+         //   mqttClient = new MqttClient("192.168.46.133", 1883, false, null, null, MqttSslProtocols.None);
+            mqttClient.MqttMsgPublishReceived -= MqttClient_MqttMsgPublishReceived;
             mqttClient.MqttMsgPublishReceived += MqttClient_MqttMsgPublishReceived;
-            mqttClient.Connect("Test");
-            mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+            //  mqttClient.Connect("Test");
+            //   mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
             // Set up how the form should be displayed and add the controls to the form.
             this.ClientSize = new System.Drawing.Size(296, 62);
@@ -95,7 +108,38 @@ namespace ListaTopic
             trbImpostaLuminositaTutto.SmallChange = 2;
 
 
-            WindowState = FormWindowState.Maximized;
+            //WindowState = FormWindowState.Maximized;
+
+
+
+
+            //Dati stato = TopicSpecifico;
+            //if (TopicSpecifico == null) return;
+
+            //int Trovato = listBox2.FindString(TopicSpecifico);
+            // Si passa la stringa direttamente dl bottone?
+
+            //if (Trovato == -1) return;
+
+            //Stato StatoAttuale = JsonConvert.DeserializeObject<Stato>(Luce);
+
+            //Dati stato = listBox2.Items[Trovato] as Dati;
+
+            if (Luce == "OFF")
+            {
+                DisattivaSpegni();
+                AttivaAccendi();
+            }
+            else
+            {
+                AttivaSpegni();
+                DisattivaAccendi();
+            }
+            //trbLuminosita.Value = stato.Curr_Brightness;
+            timer1.Stop();
+
+            timer2.Start();
+            AfterMove();
 
 
 
@@ -203,7 +247,6 @@ namespace ListaTopic
                 mqttClient.Publish(TopicLaboratorio, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicMagazzino, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicServer, Encoding.UTF8.GetBytes(Messaggio));
-
             }
         }
 
@@ -781,31 +824,6 @@ namespace ListaTopic
         }
 
 
-        public class Dati
-        {
-            public string name { get; set; }
-
-            public string unique_id { get; set; }
-
-            public override string ToString()
-            {
-                return name;
-            }
-
-
-
-            public int Curr_Brightness { get; set; }
-            public string Curr_State { get; set; }
-
-        }
-
-        public class Stato
-        {
-
-            public int Brightness { get; set; }
-            public string State { get; set; }
-
-        }
 
         #endregion
 

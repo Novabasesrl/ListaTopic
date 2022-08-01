@@ -65,7 +65,6 @@
             this.txtValoreLuminosita = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.gcConfigurazioni = new DevExpress.XtraGrid.GridControl();
-            this.configurazioniluciBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gvConfigurazioni = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNome = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -81,14 +80,15 @@
             this.button5 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnDuplica = new System.Windows.Forms.Button();
+            this.configurazioniluciBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trbImpostaLuminositaTutto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcConfigurazioni)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configurazioniluciBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConfigurazioni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbLuminosita)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.configurazioniluciBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAccendi
@@ -301,7 +301,7 @@
             // 
             // btnImpostaValoreTrb
             // 
-            this.btnImpostaValoreTrb.Location = new System.Drawing.Point(1418, 917);
+            this.btnImpostaValoreTrb.Location = new System.Drawing.Point(1427, 919);
             this.btnImpostaValoreTrb.Margin = new System.Windows.Forms.Padding(4);
             this.btnImpostaValoreTrb.Name = "btnImpostaValoreTrb";
             this.btnImpostaValoreTrb.Size = new System.Drawing.Size(140, 58);
@@ -424,7 +424,7 @@
             // 
             // 
             this.gcConfigurazioni.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.gcConfigurazioni.Location = new System.Drawing.Point(100, 100);
+            this.gcConfigurazioni.Location = new System.Drawing.Point(1100, 100);
             this.gcConfigurazioni.MainView = this.gvConfigurazioni;
             this.gcConfigurazioni.Margin = new System.Windows.Forms.Padding(6);
             this.gcConfigurazioni.Name = "gcConfigurazioni";
@@ -433,10 +433,6 @@
             this.gcConfigurazioni.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvConfigurazioni});
             this.gcConfigurazioni.Click += new System.EventHandler(this.gridControl1_Click);
-            // 
-            // configurazioniluciBindingSource
-            // 
-            this.configurazioniluciBindingSource.DataSource = typeof(ListaTopic.configurazioni_luci);
             // 
             // gvConfigurazioni
             // 
@@ -542,11 +538,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(2740, 1171);
+            this.tabControl1.Size = new System.Drawing.Size(1817, 1171);
             this.tabControl1.TabIndex = 39;
             // 
             // tabPage1
@@ -601,7 +596,6 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btnDuplica);
-            this.tabPage2.Controls.Add(this.gcConfigurazioni);
             this.tabPage2.Controls.Add(this.btnApplica);
             this.tabPage2.Controls.Add(this.btnElimina);
             this.tabPage2.Controls.Add(this.btnNuovo);
@@ -611,7 +605,7 @@
             this.tabPage2.Location = new System.Drawing.Point(8, 39);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(2724, 1124);
+            this.tabPage2.Size = new System.Drawing.Size(1801, 1124);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Sql";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -627,12 +621,17 @@
             this.btnDuplica.UseVisualStyleBackColor = true;
             this.btnDuplica.Click += new System.EventHandler(this.btnDuplica_Click);
             // 
+            // configurazioniluciBindingSource
+            // 
+            this.configurazioniluciBindingSource.DataSource = typeof(ListaTopic.configurazioni_luci);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2740, 1171);
+            this.Controls.Add(this.gcConfigurazioni);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
@@ -641,13 +640,13 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trbImpostaLuminositaTutto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcConfigurazioni)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configurazioniluciBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConfigurazioni)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbLuminosita)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.configurazioniluciBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

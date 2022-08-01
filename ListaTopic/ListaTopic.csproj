@@ -105,11 +105,18 @@
     <Compile Include="configurazioni_luci.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dati.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmComandi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmComandi.Designer.cs">
+      <DependentUpon>frmComandi.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMappa.cs">
       <SubType>Form</SubType>
@@ -142,6 +149,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmComandi.resx">
+      <DependentUpon>frmComandi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMappa.resx">
       <DependentUpon>frmMappa.cs</DependentUpon>

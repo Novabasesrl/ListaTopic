@@ -38,6 +38,7 @@ namespace ListaTopic
         clsConn Conn;
         List<configurazioni_luci> Lista = new List<configurazioni_luci>();
 
+
         public frmMappa()
         {
             m_bEvitaResize = true;
@@ -53,27 +54,30 @@ namespace ListaTopic
 
         }
 
+
         private void frmMappa_Load(object sender, EventArgs e)
         {
-            Form1 frm = new Form1();
+            Form1 frm = InitForm1();
 
-            // prendere direttamente la brightness da MQTT?
-            //
 
             mqttClient = new MqttClient("192.168.46.133", 1883, false, null, null, MqttSslProtocols.None);
             mqttClient.MqttMsgPublishReceived += MqttClient_MqttMsgPublishReceived;
             mqttClient.Connect("Test");
             mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
-            // Rende la form appena carica a schermo intero 
+            // Rende la form a schermo intero 
             WindowState = FormWindowState.Maximized;
 
-            //string json = JsonConvert.SerializeObject(DatiLuci);
-            //List<Dati> DatiLuci = JsonConvert.DeserializeObject<List<Dati>>(ContenutoSerializzato);
+            //GestisciLuce(((ucBottoneLuce)sender).Tag.ToString(), (ucBottoneLuce)sender);
 
-            //ucLuceLedSalaRiunioni.SetLuminosità();
+        }
 
 
+        private Form1 InitForm1()
+        {
+            Form1 f = new Form1();
+            f.Init(mqttClient, DatiLuci, Lista);
+            return f;
         }
 
         #region "Mqtt"
@@ -139,33 +143,6 @@ namespace ListaTopic
             }
         }
 
-
-        public class Dati
-        {
-            public string name { get; set; }
-
-            public string unique_id { get; set; }
-
-            public override string ToString()
-            {
-                return name;
-            }
-
-
-
-            public int Curr_Brightness { get; set; }
-            public string Curr_State { get; set; }
-
-        }
-
-        public class Stato
-        {
-
-            public int Brightness { get; set; }
-            public string State { get; set; }
-
-        }
-
         #endregion
 
 
@@ -179,53 +156,109 @@ namespace ListaTopic
             New_W = pictureBox1.Size.Width;
             New_H = pictureBox1.Size.Height;
 
-            // traformare i funzione!
-
             // ------------------------- LUCI SALA RIUNIONI ---------------------------------
 
             ResizeUserControl(ucLuceLedSalaRiunioni, W, H);
+            ucLuceLedSalaRiunioni.Tag = "D2_A002";
+
             ResizeUserControl(ucLuceLampadario, W, H);
+            ucLuceLampadario.Tag = "R2_A011";
+
             ResizeUserControl(ucLuceCucina, W, H);
+            ucLuceCucina.Tag = "R2_A018";
+
             ResizeUserControl(ucFarettiAurelio, W, H);
+            ucFarettiAurelio.Tag = "R2_A009";
+
             ResizeUserControl(ucScrivaniaAurelio, W, H);
+            ucScrivaniaAurelio.Tag = "D2_A008";
+
             ResizeUserControl(ucClaudioSopra, W, H);
+            ucClaudioSopra.Tag = "D2_A015";
+
             ResizeUserControl(ucClaudioSotto1, W, H);
+            ucClaudioSotto1.Tag = "D2_A016";
+
             ResizeUserControl(ucClaudioSotto2, W, H);
+            ucClaudioSotto2.Tag = "D2_A017";
+
+            ResizeUserControl(ucFarettiClaudio, W, H);
+            ucFarettiClaudio.Tag = "R2_A010";
 
 
             // ------------------------- LUCI UFFICIO TECNICO ---------------------------
 
             ResizeUserControl(ucFarettiUffici12, W, H);
+            ucFarettiUffici12.Tag = "D2_A009";
+
             ResizeUserControl(ucFarettiUffici34, W, H);
+            ucFarettiUffici34.Tag = "D2_A010";
+
             ResizeUserControl(ucScrivaniaGianluca, W, H);
+            ucScrivaniaGianluca.Tag = "D2_A003";
+
             ResizeUserControl(ucScrivaniaMattia, W, H);
+            ucScrivaniaMattia.Tag = "D2_A005";
+
             ResizeUserControl(ucScrivaniaPaolo, W, H);
+            ucScrivaniaPaolo.Tag = "D2_A004";
+
 
 
             // --------------------------- LUCI RECEPTION -------------------------------
 
             ResizeUserControl(ucLedReception, W, H);
+            ucLedReception.Tag = "D2_A001";
+
+            ResizeUserControl(ucLuciScrivaniaStampanteAnna, W, H);
+            ucLuciScrivaniaStampanteAnna.Tag = "R2_A017";
+
             ResizeUserControl(ucScrivaniaAnna, W, H);
+            ucScrivaniaAnna.Tag = "D2_A013";
+
             ResizeUserControl(ucScrivaniaDoraSopra, W, H);
+            ucScrivaniaDoraSopra.Tag = "D2_A018";
+
             ResizeUserControl(ucScrivaniaDoraSotto, W, H);
+            ucScrivaniaDoraSotto.Tag = "D2_A019";
+
             ResizeUserControl(ucScrivaniaDoraSotto2, W, H);
+            ucScrivaniaDoraSotto2.Tag = "D2_A020";
+
             ResizeUserControl(ucFarettiLedReception, W, H);
+            ucFarettiLedReception.Tag = "R2_A019";
+
             ResizeUserControl(ucLuceAscensore, W, H);
+            ucLuceAscensore.Tag = "R2_A012";
+
             ResizeUserControl(ucLuceSalaQuadro, W, H);
+            ucLuceSalaQuadro.Tag = "R2_A014";
+
             ResizeUserControl(ucFioriera, W, H);
+            ucFioriera.Tag = "R2_A016";
+
             ResizeUserControl(ucLuceLedScale, W, H);
+            ucLuceLedScale.Tag = "D2_A006";
+
 
 
 
             // ---------------------------- LUCI BAGNO --------------------------------------
 
             ResizeUserControl(ucLuceAntiBagno, W, H);
+            ucLuceAntiBagno.Tag = "R2_A020";
+
             ResizeUserControl(ucLuceBagno, W, H);
+            ucLuceBagno.Tag = "R2_A021";
+
             ResizeUserControl(ucLuceSpecchioBagno, W, H);
+            ucLuceSpecchioBagno.Tag = "R2_A022";
+
             ResizeUserControl(ucLuceFuoriBagno, W, H);
+            ucLuceFuoriBagno.Tag = "R2_A024";
+
             ResizeUserControl(ucSpecchioAntiBagno, W, H);
-
-
+            ucSpecchioAntiBagno.Tag = "R2_A023";
         }
 
 
@@ -240,61 +273,30 @@ namespace ListaTopic
             us.Location = new Point((int)New_X, (int)New_Y);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        #region "Sala riunioni"
-        private void ucLuceLedSalaRiunioni_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A002";
-            TopicSalaRiunioni += "/set";
-
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-
-            ucLuceLedSalaRiunioni.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucLuceLedSalaRiunioni.SetImmagine(Immagine);
-        }
 
         private void ucLuceLampadario_Click(object sender, EventArgs e)
         {
-            string TopicSalaRiunioni;
+            GestisciLuce(((ucBottoneLuce)sender).Tag.ToString(), (ucBottoneLuce)sender);
+        }
 
-            TopicSalaRiunioni = "homeassistant/light/R2_A011";
+        private void GestisciLuce(string NomeUniqueId, ucBottoneLuce ucBottone)
+        {
+            string TopicSalaRiunioni = $"homeassistant/light/{NomeUniqueId}";
             TopicSalaRiunioni += "/set";
 
-            Form1 frm = new Form1();
+            Form1 frm = InitForm1();
             frm.TopicSpecifico = TopicSalaRiunioni;
 
             frm.ShowDialog();
             //Percentuale = frm.Percentuale;
-            ucLuceLampadario.SetLuminosità(frm.Percentuale);
 
             string Stato;
             Stato = frm.StatoLuce;
 
+            Dati dato = DatiLuci.Where(a => a.unique_id == (NomeUniqueId)).FirstOrDefault();
+
+            frm.Luce = dato.Curr_State;
             bool Immagine = false;
 
             if (Stato == "ON")
@@ -306,813 +308,8 @@ namespace ListaTopic
                 Immagine = false;
             }
 
-            ucLuceLampadario.SetImmagine(Immagine);
-
-        }
-
-        private void ucLuceCucina_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A018";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLuceCucina.SetLuminosità(frm.Percentuale);
-
-            //Percentuale = frm.Percentuale;
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucLuceCucina.SetImmagine(Immagine);
-        }
-
-        private void ucFarettiAurelio_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A009";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucFarettiAurelio.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucFarettiAurelio.SetImmagine(Immagine);
-        }
-
-        private void ucScrivaniaAurelio_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A008";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucScrivaniaAurelio.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucScrivaniaAurelio.SetImmagine(Immagine);
-        }
-
-        private void ucFarettiClaudio_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A010";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucFarettiClaudio.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucFarettiClaudio.SetImmagine(Immagine);
-        }
-
-        private void ucClaudioSopra_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A015";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucClaudioSopra.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucClaudioSopra.SetImmagine(Immagine);
-
-        }
-
-        private void ucClaudioSotto1_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A016";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucClaudioSotto1.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucClaudioSotto1.SetImmagine(Immagine);
-        }
-
-        private void ucClaudioSotto2_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A017";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucClaudioSotto2.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucClaudioSotto2.SetImmagine(Immagine);
-        }
-
-
-        #endregion
-
-
-        #region "Ufficio Tecnico"
-
-        private void ucFarettiUffici12_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A009";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucFarettiUffici12.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucFarettiUffici12.SetImmagine(Immagine);
-
-        }
-
-        private void ucFarettiUffici34_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A010";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucFarettiUffici34.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucFarettiUffici34.SetImmagine(Immagine);
-
-        }
-
-        private void ucScrivaniaGianluca_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A003";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucScrivaniaGianluca.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucScrivaniaGianluca.SetImmagine(Immagine);
-        }
-
-        private void ucScrivaniaMattia_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A005";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucScrivaniaMattia.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucScrivaniaMattia.SetImmagine(Immagine);
-        }
-
-        private void ucScrivaniaPaolo_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A004";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucScrivaniaPaolo.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucScrivaniaPaolo.SetImmagine(Immagine);
-        }
-
-
-        #endregion
-
-
-        #region "Reception"
-        private void ucLedReception_Click(object sender, EventArgs e)
-        {
-
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A001";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLedReception.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucLedReception.SetImmagine(Immagine);
-        }
-
-        private void ucScrivaniaAnna_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A013";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucScrivaniaAnna.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucScrivaniaAnna.SetImmagine(Immagine);
-        }
-
-        private void ucScrivaniaDoraSopra_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A018";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucScrivaniaDoraSopra.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucScrivaniaDoraSopra.SetImmagine(Immagine);
-        }
-
-        private void ucScrivaniaDoraSotto_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A019";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucScrivaniaDoraSotto.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucScrivaniaDoraSotto.SetImmagine(Immagine);
-        }
-
-        private void ucScrivaniaDoraSotto2_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A020";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucScrivaniaDoraSotto2.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucScrivaniaDoraSotto2.SetImmagine(Immagine);
-        }
-
-        private void ucFarettiLedReception_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A019";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucFarettiLedReception.SetLuminosità(frm.Percentuale);
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucFarettiLedReception.SetImmagine(Immagine);
-        }
-
-        private void ucLuceAscensore_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A012";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-            ucLuceAscensore.SetLuminosità(frm.Percentuale);
-
-            frm.ShowDialog();
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucLuceAscensore.SetImmagine(Immagine);
-        }
-
-        private void ucLuceSalaQuadro_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A014";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLuceSalaQuadro.SetLuminosità(frm.Percentuale);
-
-
-            string Stato;
-            Stato = frm.StatoLuce;
-
-            bool Immagine = false;
-
-            if (Stato == "ON")
-            {
-                Immagine = true;
-            }
-            else
-            {
-                Immagine = false;
-            }
-
-            ucLuceSalaQuadro.SetImmagine(Immagine);
-        }
-
-        private void ucFioriera_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A016";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucFioriera.SetLuminosità(frm.Percentuale);
-        }
-
-        private void ucLuceLedScale_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/D2_A006";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLuceLedScale.SetLuminosità(frm.Percentuale);
-        }
-        #endregion
-
-
-        #region "Bagno
-        private void ucLuceAntiBagno_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A020";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLuceAntiBagno.SetLuminosità(frm.Percentuale);
-
-            //Percentuale = frm.Percentuale;
-        }
-
-        private void ucLuceBagno_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A021";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLuceBagno.SetLuminosità(frm.Percentuale);
-
-            //Percentuale = frm.Percentuale;
-        }
-
-        private void ucLuceSpecchioBagno_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A022";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLuceSpecchioBagno.SetLuminosità(frm.Percentuale);
-
-            //Percentuale = frm.Percentuale;
-        }
-
-        private void ucLuceFuoriBagno_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A024";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucLuceFuoriBagno.SetLuminosità(frm.Percentuale);
-
-            //Percentuale = frm.Percentuale;
-        }
-
-        private void ucSpecchioAntiBagno_Click(object sender, EventArgs e)
-        {
-            string TopicSalaRiunioni;
-
-            TopicSalaRiunioni = "homeassistant/light/R2_A023";
-            TopicSalaRiunioni += "/set";
-
-            Form1 frm = new Form1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
-
-            frm.ShowDialog();
-            ucSpecchioAntiBagno.SetLuminosità(frm.Percentuale);
-
-            //Percentuale = frm.Percentuale;
-        }
-
-
-
-
-        #endregion
-
-
-        #region "bagno magazzino"
-        //string TopicSalaRiunioni;
-
-        //TopicSalaRiunioni = "homeassistant/light/R1_A053";
-        //TopicSalaRiunioni += "/set";
-
-        //Form1 frm = new Form1();
-        //frm.TopicSpecifico = TopicSalaRiunioni;
-
-        //frm.ShowDialog(); 
-        ////Percentuale = frm.Percentuale;
-        //ucBagnoMagazzino.SetLuminosità(frm.Percentuale);
-        //
-        //
-//        string Stato;
-//        Stato = frm.StatoLuce;
-
-//            bool Immagine = false;
-
-//            if (Stato == "ON")
-//            {
-//                Immagine = true;
-//            }
-//            else
-//            {
-//                Immagine = false;
-//            }
-
-//ucLuceLedSalaRiunioni.SetImmagine(Immagine);
-        #endregion
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //if (listBox2.SelectedIndex != -1)
-            //{
-            //    //string json = JsonConvert.SerializeObject(DatiLuci);
-            //    //List<Dati> DatiLuci = JsonConvert.DeserializeObject<List<Dati>>(ContenutoSerializzato);
-
-
-            //    string Topic;
-            //    string Messaggio;
-            //    Messaggio = "{\"brightness\": " + trbLuminosita.Value +
-            //        ",\"state\": \"ON\"} ";
-            //    Topic = "homeassistant/light/";
-            //    Topic += (listBox2.SelectedItem as Dati).unique_id;
-            //    Topic += "/set";
-            //    if (mqttClient != null && mqttClient.IsConnected)
-            //    {
-            //        mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
-            //    }
-            //    timer1.Stop();
-
-            //    timer2.Enabled = true;
-            //}
-            //else
-            //{
-            //    string Topic;
-            //    string Messaggio;
-            //    Messaggio = "{\"brightness\": " + trbLuminosita.Value +
-            //        ",\"state\": \"ON\"} ";
-            //    Topic = TopicSpecifico;
-            //    if (mqttClient != null && mqttClient.IsConnected)
-            //    {
-            //        mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
-            //    }
-            //    timer1.Stop();
-
-            //    timer2.Enabled = true;
-            //}
+            ucBottone.SetLuminosità(frm.Percentuale);
+            ucBottone.SetImmagine(Immagine);
         }
 
         
