@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMappa));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnVisualizzaComandi = new System.Windows.Forms.Button();
             this.ucLuciScrivaniaStampanteAnna = new ListaTopic.ucBottoneLuce();
             this.ucLuceLedScale = new ListaTopic.ucBottoneLuce();
             this.ucFioriera = new ListaTopic.ucBottoneLuce();
@@ -59,9 +61,30 @@
             this.ucLuceCucina = new ListaTopic.ucBottoneLuce();
             this.ucLuceLampadario = new ListaTopic.ucBottoneLuce();
             this.ucLuceLedSalaRiunioni = new ListaTopic.ucBottoneLuce();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1729, 1128);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnVisualizzaComandi
+            // 
+            this.btnVisualizzaComandi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnVisualizzaComandi.BackgroundImage")));
+            this.btnVisualizzaComandi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVisualizzaComandi.Location = new System.Drawing.Point(778, 999);
+            this.btnVisualizzaComandi.Name = "btnVisualizzaComandi";
+            this.btnVisualizzaComandi.Size = new System.Drawing.Size(70, 70);
+            this.btnVisualizzaComandi.TabIndex = 39;
+            this.btnVisualizzaComandi.UseVisualStyleBackColor = true;
+            this.btnVisualizzaComandi.Click += new System.EventHandler(this.btnVisualizzaComandi_Click);
             // 
             // ucLuciScrivaniaStampanteAnna
             // 
@@ -408,23 +431,13 @@
             this.ucLuceLedSalaRiunioni.TabIndex = 1;
             this.ucLuceLedSalaRiunioni.Click += new System.EventHandler(this.ucLuceLampadario_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1729, 1128);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmMappa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1729, 1128);
+            this.Controls.Add(this.btnVisualizzaComandi);
             this.Controls.Add(this.ucLuciScrivaniaStampanteAnna);
             this.Controls.Add(this.ucLuceLedScale);
             this.Controls.Add(this.ucFioriera);
@@ -459,7 +472,6 @@
             this.MinimumSize = new System.Drawing.Size(1024, 800);
             this.Name = "frmMappa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
             this.Load += new System.EventHandler(this.frmMappa_Load);
             this.Resize += new System.EventHandler(this.frmMappa_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -500,5 +512,6 @@
         private ucBottoneLuce ucFioriera;
         private ucBottoneLuce ucLuceLedScale;
         private ucBottoneLuce ucLuciScrivaniaStampanteAnna;
+        private System.Windows.Forms.Button btnVisualizzaComandi;
     }
 }

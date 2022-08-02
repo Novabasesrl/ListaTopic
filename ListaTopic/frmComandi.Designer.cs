@@ -56,14 +56,28 @@
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.gcConfigurazioni = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.configurazioniluciBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gcConfigurazioniLuci = new DevExpress.XtraGrid.GridControl();
+            this.gvConfigurazioni = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNome = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colJson = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.trbImpostaLuminositaTutto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcConfigurazioni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configurazioniluciBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcConfigurazioniLuci)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvConfigurazioni)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAccendiReception
             // 
-            this.btnAccendiReception.Location = new System.Drawing.Point(260, 378);
+            this.btnAccendiReception.Location = new System.Drawing.Point(240, 323);
             this.btnAccendiReception.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendiReception.Name = "btnAccendiReception";
             this.btnAccendiReception.Size = new System.Drawing.Size(164, 65);
@@ -74,7 +88,7 @@
             // 
             // btnSpegniSecondoPiano
             // 
-            this.btnSpegniSecondoPiano.Location = new System.Drawing.Point(260, 228);
+            this.btnSpegniSecondoPiano.Location = new System.Drawing.Point(240, 173);
             this.btnSpegniSecondoPiano.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpegniSecondoPiano.Name = "btnSpegniSecondoPiano";
             this.btnSpegniSecondoPiano.Size = new System.Drawing.Size(164, 65);
@@ -85,7 +99,7 @@
             // 
             // btnSpegniReception
             // 
-            this.btnSpegniReception.Location = new System.Drawing.Point(260, 528);
+            this.btnSpegniReception.Location = new System.Drawing.Point(240, 473);
             this.btnSpegniReception.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpegniReception.Name = "btnSpegniReception";
             this.btnSpegniReception.Size = new System.Drawing.Size(164, 65);
@@ -96,7 +110,7 @@
             // 
             // btnSpegniSalaRiunione
             // 
-            this.btnSpegniSalaRiunione.Location = new System.Drawing.Point(58, 528);
+            this.btnSpegniSalaRiunione.Location = new System.Drawing.Point(38, 473);
             this.btnSpegniSalaRiunione.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpegniSalaRiunione.Name = "btnSpegniSalaRiunione";
             this.btnSpegniSalaRiunione.Size = new System.Drawing.Size(164, 65);
@@ -107,7 +121,7 @@
             // 
             // btnAccendiTutto
             // 
-            this.btnAccendiTutto.Location = new System.Drawing.Point(58, 78);
+            this.btnAccendiTutto.Location = new System.Drawing.Point(38, 23);
             this.btnAccendiTutto.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendiTutto.Name = "btnAccendiTutto";
             this.btnAccendiTutto.Size = new System.Drawing.Size(164, 65);
@@ -118,7 +132,7 @@
             // 
             // trbImpostaLuminositaTutto
             // 
-            this.trbImpostaLuminositaTutto.Location = new System.Drawing.Point(62, 938);
+            this.trbImpostaLuminositaTutto.Location = new System.Drawing.Point(42, 883);
             this.trbImpostaLuminositaTutto.Margin = new System.Windows.Forms.Padding(4);
             this.trbImpostaLuminositaTutto.Maximum = 101;
             this.trbImpostaLuminositaTutto.Name = "trbImpostaLuminositaTutto";
@@ -129,7 +143,7 @@
             // 
             // btnAccendiSalaRiunione
             // 
-            this.btnAccendiSalaRiunione.Location = new System.Drawing.Point(58, 378);
+            this.btnAccendiSalaRiunione.Location = new System.Drawing.Point(38, 323);
             this.btnAccendiSalaRiunione.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendiSalaRiunione.Name = "btnAccendiSalaRiunione";
             this.btnAccendiSalaRiunione.Size = new System.Drawing.Size(164, 65);
@@ -140,7 +154,7 @@
             // 
             // btnAccendiUffici
             // 
-            this.btnAccendiUffici.Location = new System.Drawing.Point(456, 378);
+            this.btnAccendiUffici.Location = new System.Drawing.Point(436, 323);
             this.btnAccendiUffici.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendiUffici.Name = "btnAccendiUffici";
             this.btnAccendiUffici.Size = new System.Drawing.Size(164, 65);
@@ -151,7 +165,7 @@
             // 
             // txtImpostaValoreTutteLuci
             // 
-            this.txtImpostaValoreTutteLuci.Location = new System.Drawing.Point(98, 1084);
+            this.txtImpostaValoreTutteLuci.Location = new System.Drawing.Point(98, 1085);
             this.txtImpostaValoreTutteLuci.Margin = new System.Windows.Forms.Padding(4);
             this.txtImpostaValoreTutteLuci.Name = "txtImpostaValoreTutteLuci";
             this.txtImpostaValoreTutteLuci.Size = new System.Drawing.Size(244, 31);
@@ -159,7 +173,7 @@
             // 
             // btnImpostaValoreTrb
             // 
-            this.btnImpostaValoreTrb.Location = new System.Drawing.Point(368, 1055);
+            this.btnImpostaValoreTrb.Location = new System.Drawing.Point(368, 1056);
             this.btnImpostaValoreTrb.Margin = new System.Windows.Forms.Padding(4);
             this.btnImpostaValoreTrb.Name = "btnImpostaValoreTrb";
             this.btnImpostaValoreTrb.Size = new System.Drawing.Size(140, 58);
@@ -170,7 +184,7 @@
             // 
             // btnSpegniMgazzino
             // 
-            this.btnSpegniMgazzino.Location = new System.Drawing.Point(456, 228);
+            this.btnSpegniMgazzino.Location = new System.Drawing.Point(436, 173);
             this.btnSpegniMgazzino.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpegniMgazzino.Name = "btnSpegniMgazzino";
             this.btnSpegniMgazzino.Size = new System.Drawing.Size(164, 65);
@@ -181,7 +195,7 @@
             // 
             // btnSpegniUffici
             // 
-            this.btnSpegniUffici.Location = new System.Drawing.Point(456, 528);
+            this.btnSpegniUffici.Location = new System.Drawing.Point(436, 473);
             this.btnSpegniUffici.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpegniUffici.Name = "btnSpegniUffici";
             this.btnSpegniUffici.Size = new System.Drawing.Size(164, 65);
@@ -192,7 +206,7 @@
             // 
             // btnSpegniTutto
             // 
-            this.btnSpegniTutto.Location = new System.Drawing.Point(58, 228);
+            this.btnSpegniTutto.Location = new System.Drawing.Point(38, 173);
             this.btnSpegniTutto.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpegniTutto.Name = "btnSpegniTutto";
             this.btnSpegniTutto.Size = new System.Drawing.Size(164, 65);
@@ -203,7 +217,7 @@
             // 
             // btnAccendiSecondoPiano
             // 
-            this.btnAccendiSecondoPiano.Location = new System.Drawing.Point(260, 78);
+            this.btnAccendiSecondoPiano.Location = new System.Drawing.Point(240, 23);
             this.btnAccendiSecondoPiano.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendiSecondoPiano.Name = "btnAccendiSecondoPiano";
             this.btnAccendiSecondoPiano.Size = new System.Drawing.Size(164, 65);
@@ -214,7 +228,7 @@
             // 
             // btnAccendiTuttoLuminosita
             // 
-            this.btnAccendiTuttoLuminosita.Location = new System.Drawing.Point(214, 792);
+            this.btnAccendiTuttoLuminosita.Location = new System.Drawing.Point(240, 617);
             this.btnAccendiTuttoLuminosita.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendiTuttoLuminosita.Name = "btnAccendiTuttoLuminosita";
             this.btnAccendiTuttoLuminosita.Size = new System.Drawing.Size(164, 65);
@@ -226,7 +240,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(104, 898);
+            this.label1.Location = new System.Drawing.Point(84, 842);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 25);
@@ -235,7 +249,7 @@
             // 
             // btnAccendiMagazzino
             // 
-            this.btnAccendiMagazzino.Location = new System.Drawing.Point(456, 78);
+            this.btnAccendiMagazzino.Location = new System.Drawing.Point(436, 23);
             this.btnAccendiMagazzino.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendiMagazzino.Name = "btnAccendiMagazzino";
             this.btnAccendiMagazzino.Size = new System.Drawing.Size(164, 65);
@@ -246,7 +260,7 @@
             // 
             // btnDuplica
             // 
-            this.btnDuplica.Location = new System.Drawing.Point(1453, 794);
+            this.btnDuplica.Location = new System.Drawing.Point(1432, 738);
             this.btnDuplica.Margin = new System.Windows.Forms.Padding(4);
             this.btnDuplica.Name = "btnDuplica";
             this.btnDuplica.Size = new System.Drawing.Size(140, 63);
@@ -257,7 +271,7 @@
             // 
             // btnApplica
             // 
-            this.btnApplica.Location = new System.Drawing.Point(1453, 702);
+            this.btnApplica.Location = new System.Drawing.Point(1432, 646);
             this.btnApplica.Margin = new System.Windows.Forms.Padding(4);
             this.btnApplica.Name = "btnApplica";
             this.btnApplica.Size = new System.Drawing.Size(140, 63);
@@ -268,10 +282,10 @@
             // 
             // btnElimina
             // 
-            this.btnElimina.Location = new System.Drawing.Point(1453, 603);
+            this.btnElimina.Location = new System.Drawing.Point(1432, 548);
             this.btnElimina.Margin = new System.Windows.Forms.Padding(4);
             this.btnElimina.Name = "btnElimina";
-            this.btnElimina.Size = new System.Drawing.Size(140, 72);
+            this.btnElimina.Size = new System.Drawing.Size(140, 71);
             this.btnElimina.TabIndex = 49;
             this.btnElimina.Text = "Elimina";
             this.btnElimina.UseVisualStyleBackColor = true;
@@ -279,7 +293,7 @@
             // 
             // btnNuovo
             // 
-            this.btnNuovo.Location = new System.Drawing.Point(1453, 415);
+            this.btnNuovo.Location = new System.Drawing.Point(1432, 360);
             this.btnNuovo.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuovo.Name = "btnNuovo";
             this.btnNuovo.Size = new System.Drawing.Size(140, 63);
@@ -290,7 +304,7 @@
             // 
             // btnSovrascrivi
             // 
-            this.btnSovrascrivi.Location = new System.Drawing.Point(1453, 505);
+            this.btnSovrascrivi.Location = new System.Drawing.Point(1432, 450);
             this.btnSovrascrivi.Margin = new System.Windows.Forms.Padding(4);
             this.btnSovrascrivi.Name = "btnSovrascrivi";
             this.btnSovrascrivi.Size = new System.Drawing.Size(140, 63);
@@ -301,7 +315,7 @@
             // 
             // btnSalva
             // 
-            this.btnSalva.Location = new System.Drawing.Point(1467, 13);
+            this.btnSalva.Location = new System.Drawing.Point(1432, 25);
             this.btnSalva.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalva.Name = "btnSalva";
             this.btnSalva.Size = new System.Drawing.Size(140, 63);
@@ -312,7 +326,7 @@
             // 
             // btnCarica
             // 
-            this.btnCarica.Location = new System.Drawing.Point(1303, 13);
+            this.btnCarica.Location = new System.Drawing.Point(1432, 115);
             this.btnCarica.Margin = new System.Windows.Forms.Padding(4);
             this.btnCarica.Name = "btnCarica";
             this.btnCarica.Size = new System.Drawing.Size(140, 63);
@@ -327,9 +341,6 @@
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
             // gcConfigurazioni
-            // 
-            // 
-            // 
             // 
             this.gcConfigurazioni.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.gcConfigurazioni.Location = new System.Drawing.Point(100, 100);
@@ -346,11 +357,80 @@
             this.gridView1.GridControl = this.gcConfigurazioni;
             this.gridView1.Name = "gridView1";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // configurazioniluciBindingSource
+            // 
+            this.configurazioniluciBindingSource.DataSource = typeof(ListaTopic.configurazioni_luci);
+            // 
+            // gcConfigurazioniLuci
+            // 
+            this.gcConfigurazioniLuci.DataSource = this.configurazioniluciBindingSource;
+            this.gcConfigurazioniLuci.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
+            this.gcConfigurazioniLuci.Location = new System.Drawing.Point(627, 15);
+            this.gcConfigurazioniLuci.MainView = this.gvConfigurazioni;
+            this.gcConfigurazioniLuci.Margin = new System.Windows.Forms.Padding(6);
+            this.gcConfigurazioniLuci.Name = "gcConfigurazioniLuci";
+            this.gcConfigurazioniLuci.Size = new System.Drawing.Size(771, 760);
+            this.gcConfigurazioniLuci.TabIndex = 52;
+            this.gcConfigurazioniLuci.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvConfigurazioni});
+            // 
+            // gvConfigurazioni
+            // 
+            this.gvConfigurazioni.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colid,
+            this.colNome,
+            this.colJson});
+            this.gvConfigurazioni.GridControl = this.gcConfigurazioniLuci;
+            this.gvConfigurazioni.Name = "gvConfigurazioni";
+            this.gvConfigurazioni.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gvConfigurazioni.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gvConfigurazioni.OptionsEditForm.ShowUpdateCancelPanel = DevExpress.Utils.DefaultBoolean.True;
+            this.gvConfigurazioni.OptionsMenu.EnableFooterMenu = false;
+            this.gvConfigurazioni.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
+            this.gvConfigurazioni.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.gvConfigurazioni.OptionsView.RowAutoHeight = true;
+            this.gvConfigurazioni.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+            this.gvConfigurazioni.OptionsView.ShowFooter = true;
+            // 
+            // colid
+            // 
+            this.colid.FieldName = "id";
+            this.colid.Name = "colid";
+            // 
+            // colNome
+            // 
+            this.colNome.FieldName = "Nome";
+            this.colNome.Name = "colNome";
+            this.colNome.Visible = true;
+            this.colNome.VisibleIndex = 0;
+            // 
+            // colJson
+            // 
+            this.colJson.FieldName = "Json";
+            this.colJson.Name = "colJson";
+            this.colJson.Visible = true;
+            this.colJson.VisibleIndex = 1;
+            // 
             // frmComandi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1625, 1164);
+            this.ClientSize = new System.Drawing.Size(1624, 1062);
+            this.Controls.Add(this.gcConfigurazioniLuci);
             this.Controls.Add(this.btnDuplica);
             this.Controls.Add(this.btnApplica);
             this.Controls.Add(this.btnElimina);
@@ -375,12 +455,16 @@
             this.Controls.Add(this.btnAccendiTuttoLuminosita);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAccendiMagazzino);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmComandi";
             this.Text = "Comandi luci";
             this.Load += new System.EventHandler(this.frmComandi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trbImpostaLuminositaTutto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcConfigurazioni)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configurazioniluciBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcConfigurazioniLuci)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvConfigurazioni)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,5 +499,16 @@
         private System.Windows.Forms.Timer timer3;
         private DevExpress.XtraGrid.GridControl gcConfigurazioni;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.BindingSource configurazioniluciBindingSource;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private DevExpress.XtraGrid.GridControl gcConfigurazioniLuci;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvConfigurazioni;
+        private DevExpress.XtraGrid.Columns.GridColumn colid;
+        private DevExpress.XtraGrid.Columns.GridColumn colNome;
+        private DevExpress.XtraGrid.Columns.GridColumn colJson;
     }
 }

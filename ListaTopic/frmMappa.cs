@@ -37,7 +37,7 @@ namespace ListaTopic
 
         clsConn Conn;
         List<configurazioni_luci> Lista = new List<configurazioni_luci>();
-
+        List<ucBottoneLuce> TuttiIBottoni = new List<ucBottoneLuce>();
 
         public frmMappa()
         {
@@ -45,12 +45,82 @@ namespace ListaTopic
 
             InitializeComponent();
 
+            // Aggiungi tutti
+            TuttiIBottoni.Add(ucLuceLedSalaRiunioni);
+
+            TuttiIBottoni.Add(ucLuceLampadario);
+
+            TuttiIBottoni.Add(ucLuceCucina);
+
+            TuttiIBottoni.Add(ucFarettiAurelio);
+
+            TuttiIBottoni.Add(ucScrivaniaAurelio);
+
+            TuttiIBottoni.Add(ucClaudioSopra);
+
+            TuttiIBottoni.Add(ucClaudioSotto1);
+
+            TuttiIBottoni.Add(ucClaudioSotto2);
+
+            TuttiIBottoni.Add(ucFarettiClaudio);
+
+            TuttiIBottoni.Add(ucFarettiUffici12);
+
+            TuttiIBottoni.Add(ucFarettiUffici34);
+
+            TuttiIBottoni.Add(ucScrivaniaGianluca);
+
+            TuttiIBottoni.Add(ucScrivaniaMattia);
+
+            TuttiIBottoni.Add(ucScrivaniaPaolo);
+
+            TuttiIBottoni.Add(ucLedReception);
+
+            TuttiIBottoni.Add(ucLuciScrivaniaStampanteAnna);
+
+            TuttiIBottoni.Add(ucScrivaniaAnna);
+
+            TuttiIBottoni.Add(ucScrivaniaDoraSopra);
+
+            TuttiIBottoni.Add(ucScrivaniaDoraSotto);
+
+            TuttiIBottoni.Add(ucScrivaniaDoraSotto2);
+
+            TuttiIBottoni.Add(ucFarettiLedReception);
+
+            TuttiIBottoni.Add(ucLuceAscensore);
+
+            TuttiIBottoni.Add(ucLuceSalaQuadro);
+
+            TuttiIBottoni.Add(ucFioriera);
+
+            TuttiIBottoni.Add(ucLuceLedScale);
+
+            TuttiIBottoni.Add(ucLuceAntiBagno);
+
+            TuttiIBottoni.Add(ucLuceBagno);
+
+            TuttiIBottoni.Add(ucLuceSpecchioBagno);
+
+            TuttiIBottoni.Add(ucLuceFuoriBagno);
+
+            TuttiIBottoni.Add(ucSpecchioAntiBagno);
+
+
             New_W = pictureBox1.Size.Width;
             New_H = pictureBox1.Size.Height;
 
             m_bEvitaResize = false;
 
             Conn = new clsConn();
+
+        }
+
+        private void AggiornaTasto(Dati ilDato)
+        {
+            //ucBottoneLuce ilBottone = TuttiIBottoni.Where(uniquieid = ilDato.unique_id).first;
+            ucBottoneLuce ilBottone = TuttiIBottoni.Where( = ilDato.unique_id).first;
+
 
         }
 
@@ -67,8 +137,6 @@ namespace ListaTopic
 
             // Rende la form a schermo intero 
             WindowState = FormWindowState.Maximized;
-
-            //GestisciLuce(((ucBottoneLuce)sender).Tag.ToString(), (ucBottoneLuce)sender);
 
         }
 
@@ -111,6 +179,9 @@ namespace ListaTopic
 
                 // Metto in lista 
                 DatiLuci.Add(dati);
+
+                // Aggiorna ogni tasto
+                AggiornaTasto(dati);
             }
             else if (e.Topic.EndsWith("state"))
             {
@@ -134,6 +205,11 @@ namespace ListaTopic
                 {
                     luce.Curr_State = stato.State;
                     luce.Curr_Brightness = stato.Brightness;
+
+
+                    // Aggiorna il tasto relativo
+                    AggiornaTasto(luce);
+
                 }
                 else
                 {
@@ -155,6 +231,15 @@ namespace ListaTopic
             
             New_W = pictureBox1.Size.Width;
             New_H = pictureBox1.Size.Height;
+
+
+            // ---------------------- BOTTONE ---------------------
+
+            ResizeButton(btnVisualizzaComandi, W, H);
+
+
+
+
 
             // ------------------------- LUCI SALA RIUNIONI ---------------------------------
 
@@ -273,6 +358,16 @@ namespace ListaTopic
             us.Location = new Point((int)New_X, (int)New_Y);
         }
 
+        private void ResizeButton(System.Windows.Forms.Button btn, double W, double H)
+        {
+            double X = btn.Location.X;
+            double Y = btn.Location.Y;
+
+            double New_X = (New_W / W) * X;
+            double New_Y = (New_H / H) * Y;
+
+            btn.Location = new Point((int)New_X, (int)New_Y);
+        }
 
 
         private void ucLuceLampadario_Click(object sender, EventArgs e)
@@ -296,6 +391,8 @@ namespace ListaTopic
 
             Dati dato = DatiLuci.Where(a => a.unique_id == (NomeUniqueId)).FirstOrDefault();
 
+            frm.Luminosita = dato.Curr_Brightness;
+
             frm.Luce = dato.Curr_State;
             bool Immagine = false;
 
@@ -312,6 +409,11 @@ namespace ListaTopic
             ucBottone.SetImmagine(Immagine);
         }
 
-        
+        private void btnVisualizzaComandi_Click(object sender, EventArgs e)
+        {
+            frmComandi frm = new frmComandi();
+
+            frm.ShowDialog();
+        }
     }
 }

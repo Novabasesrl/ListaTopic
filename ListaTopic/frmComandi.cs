@@ -44,11 +44,11 @@ namespace ListaTopic
 
         private void frmComandi_Load(object sender, EventArgs e)
         {
-            //   mqttClient = new MqttClient("192.168.46.133", 1883, false, null, null, MqttSslProtocols.None);
-            mqttClient.MqttMsgPublishReceived -= MqttClient_MqttMsgPublishReceived;
+            mqttClient = new MqttClient("192.168.46.133", 1883, false, null, null, MqttSslProtocols.None);
+            //mqttClient.MqttMsgPublishReceived -= MqttClient_MqttMsgPublishReceived;
             mqttClient.MqttMsgPublishReceived += MqttClient_MqttMsgPublishReceived;
-            //  mqttClient.Connect("Test");
-            //   mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+            mqttClient.Connect("Test");
+            mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
 
             // Luminosita per tutto il secondo piano
@@ -70,21 +70,20 @@ namespace ListaTopic
             trbImpostaLuminositaTutto.SmallChange = 2;
 
 
-            WindowState = FormWindowState.Maximized;
+            //WindowState = FormWindowState.Maximized;
 
-            
+            label1.Text = Convert.ToString(trbImpostaLuminositaTutto.Value);
         }
 
 
 
-        //public void Init(MqttClient _mqttClient, List<Dati> _DatiLuci, List<configurazioni_luci> _ConfigLuci)
-        //{
-        //    mqttClient = _mqttClient;
-        //    DatiLuci = _DatiLuci;
-        //    Lista = _ConfigLuci;
-        //    listBox2.Items.Clear();
-        //    foreach (Dati ilDato in DatiLuci) listBox2.Items.Add(ilDato);
-        //}
+        public void Init(MqttClient _mqttClient, List<Dati> _DatiLuci, List<configurazioni_luci> _ConfigLuci)
+        {
+            mqttClient = _mqttClient;
+            DatiLuci = _DatiLuci;
+            Lista = _ConfigLuci;
+           
+        }
 
 
         #region "Mqtt"
@@ -758,6 +757,20 @@ namespace ListaTopic
             configurazioniluciBindingSource.DataSource = Lista;
         }
 
+        public configurazioni_luci GetDatiSelezionati()
+        {
+            foreach (int i in gvConfigurazioni.GetSelectedRows())
+            {
+                configurazioni_luci so = (configurazioni_luci)gvConfigurazioni.GetRow(i);
+                if (so != null)
+                {
+                    return so;
+                }
+            }
+
+            return null;
+        }
+
         private void btnSalva_Click(object sender, EventArgs e)
         {
             try
@@ -880,7 +893,7 @@ namespace ListaTopic
 
             List<Dati> DatiLuci = JsonConvert.DeserializeObject<List<Dati>>(Configurazione.Json);
 
-            // sparere su mqtt per ogni elementi diu datiluci on/off/luminosità
+            // sparare su mqtt per ogni elementi diu datiluci on/off/luminosità
             foreach (Dati Dati in DatiLuci)
             {
                 string Topic;
@@ -893,10 +906,8 @@ namespace ListaTopic
                 Topic = "homeassistant/light/";
                 Topic += Dati.unique_id;
                 Topic += "/set";
-                // Non funziona quando si imposta l luminosita diversa da 10 
-                // Ricordarisi l' ultimo test fatto
-                // si chiamka bassa
-                if (Topic != "homeassistant/light/D2_BroadcastEVG/set")
+                
+                if (Topic != "homeassistant/light/D2_A255/set")
                 {
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
                 }
@@ -944,6 +955,11 @@ namespace ListaTopic
                 mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
             }
             timer3.Stop();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
         }
     }
 }

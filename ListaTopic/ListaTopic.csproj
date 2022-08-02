@@ -208,12 +208,14 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\4058075293298.jpg" />
+    <Content Include="Resources\control-panel %281%29.png" />
     <Content Include="Resources\LampadinaAccesa.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\LampadinaSpenta.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Pannello.jpg" />
     <Content Include="Varie\Prompt.txt" />
   </ItemGroup>
   <ItemGroup>
