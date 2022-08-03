@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMappa));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnVisualizzaComandi = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ucLuciScrivaniaStampanteAnna = new ListaTopic.ucBottoneLuce();
             this.ucLuceLedScale = new ListaTopic.ucBottoneLuce();
             this.ucFioriera = new ListaTopic.ucBottoneLuce();
@@ -61,19 +61,9 @@
             this.ucLuceCucina = new ListaTopic.ucBottoneLuce();
             this.ucLuceLampadario = new ListaTopic.ucBottoneLuce();
             this.ucLuceLedSalaRiunioni = new ListaTopic.ucBottoneLuce();
+            this.btnPianoInferiore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1729, 1128);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // btnVisualizzaComandi
             // 
@@ -85,6 +75,17 @@
             this.btnVisualizzaComandi.TabIndex = 39;
             this.btnVisualizzaComandi.UseVisualStyleBackColor = true;
             this.btnVisualizzaComandi.Click += new System.EventHandler(this.btnVisualizzaComandi_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1729, 1128);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // ucLuciScrivaniaStampanteAnna
             // 
@@ -244,7 +245,7 @@
             // 
             this.ucFarettiUffici12.BackColor = System.Drawing.Color.White;
             this.ucFarettiUffici12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucFarettiUffici12.Location = new System.Drawing.Point(1400, 671);
+            this.ucFarettiUffici12.Location = new System.Drawing.Point(1401, 678);
             this.ucFarettiUffici12.Margin = new System.Windows.Forms.Padding(6);
             this.ucFarettiUffici12.Name = "ucFarettiUffici12";
             this.ucFarettiUffici12.Size = new System.Drawing.Size(62, 87);
@@ -431,12 +432,25 @@
             this.ucLuceLedSalaRiunioni.TabIndex = 1;
             this.ucLuceLedSalaRiunioni.Click += new System.EventHandler(this.ucLuceLampadario_Click);
             // 
+            // btnPianoInferiore
+            // 
+            this.btnPianoInferiore.BackColor = System.Drawing.Color.White;
+            this.btnPianoInferiore.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPianoInferiore.BackgroundImage")));
+            this.btnPianoInferiore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPianoInferiore.Location = new System.Drawing.Point(1641, 519);
+            this.btnPianoInferiore.Name = "btnPianoInferiore";
+            this.btnPianoInferiore.Size = new System.Drawing.Size(76, 70);
+            this.btnPianoInferiore.TabIndex = 41;
+            this.btnPianoInferiore.UseVisualStyleBackColor = false;
+            this.btnPianoInferiore.Click += new System.EventHandler(this.btnPianoInferiore_Click);
+            // 
             // frmMappa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1729, 1128);
+            this.Controls.Add(this.btnPianoInferiore);
             this.Controls.Add(this.btnVisualizzaComandi);
             this.Controls.Add(this.ucLuciScrivaniaStampanteAnna);
             this.Controls.Add(this.ucLuceLedScale);
@@ -513,5 +527,6 @@
         private ucBottoneLuce ucLuceLedScale;
         private ucBottoneLuce ucLuciScrivaniaStampanteAnna;
         private System.Windows.Forms.Button btnVisualizzaComandi;
+        private System.Windows.Forms.Button btnPianoInferiore;
     }
 }

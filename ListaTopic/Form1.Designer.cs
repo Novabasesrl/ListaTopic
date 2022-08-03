@@ -123,6 +123,7 @@
             // 
             // btnAccendi
             // 
+            this.btnAccendi.Enabled = false;
             this.btnAccendi.Location = new System.Drawing.Point(13, 438);
             this.btnAccendi.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendi.Name = "btnAccendi";
@@ -145,6 +146,7 @@
             // 
             // btnSpegni
             // 
+            this.btnSpegni.Enabled = false;
             this.btnSpegni.Location = new System.Drawing.Point(204, 438);
             this.btnSpegni.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpegni.Name = "btnSpegni";

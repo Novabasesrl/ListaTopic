@@ -165,7 +165,7 @@
             // 
             // txtImpostaValoreTutteLuci
             // 
-            this.txtImpostaValoreTutteLuci.Location = new System.Drawing.Point(98, 1085);
+            this.txtImpostaValoreTutteLuci.Location = new System.Drawing.Point(117, 1008);
             this.txtImpostaValoreTutteLuci.Margin = new System.Windows.Forms.Padding(4);
             this.txtImpostaValoreTutteLuci.Name = "txtImpostaValoreTutteLuci";
             this.txtImpostaValoreTutteLuci.Size = new System.Drawing.Size(244, 31);
@@ -173,7 +173,7 @@
             // 
             // btnImpostaValoreTrb
             // 
-            this.btnImpostaValoreTrb.Location = new System.Drawing.Point(368, 1056);
+            this.btnImpostaValoreTrb.Location = new System.Drawing.Point(369, 981);
             this.btnImpostaValoreTrb.Margin = new System.Windows.Forms.Padding(4);
             this.btnImpostaValoreTrb.Name = "btnImpostaValoreTrb";
             this.btnImpostaValoreTrb.Size = new System.Drawing.Size(140, 58);
@@ -228,7 +228,7 @@
             // 
             // btnAccendiTuttoLuminosita
             // 
-            this.btnAccendiTuttoLuminosita.Location = new System.Drawing.Point(240, 617);
+            this.btnAccendiTuttoLuminosita.Location = new System.Drawing.Point(210, 765);
             this.btnAccendiTuttoLuminosita.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccendiTuttoLuminosita.Name = "btnAccendiTuttoLuminosita";
             this.btnAccendiTuttoLuminosita.Size = new System.Drawing.Size(164, 65);
@@ -429,7 +429,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1624, 1062);
+            this.ClientSize = new System.Drawing.Size(1624, 1170);
             this.Controls.Add(this.gcConfigurazioniLuci);
             this.Controls.Add(this.btnDuplica);
             this.Controls.Add(this.btnApplica);
@@ -456,6 +456,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAccendiMagazzino);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(1650, 1241);
+            this.MinimumSize = new System.Drawing.Size(1650, 1241);
             this.Name = "frmComandi";
             this.Text = "Comandi luci";
             this.Load += new System.EventHandler(this.frmComandi_Load);

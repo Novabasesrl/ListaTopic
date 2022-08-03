@@ -118,6 +118,12 @@
     <Compile Include="frmComandi.Designer.cs">
       <DependentUpon>frmComandi.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMagazzino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMagazzino.Designer.cs">
+      <DependentUpon>frmMagazzino.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMappa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmComandi.resx">
       <DependentUpon>frmComandi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMagazzino.resx">
+      <DependentUpon>frmMagazzino.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMappa.resx">
       <DependentUpon>frmMappa.cs</DependentUpon>
@@ -232,4 +241,7 @@
   </Target>
   <Import Project="..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('..\packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.1\build\Microsoft.Windows.SDK.BuildTools.targets')" />
   <Import Project="..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>copy "$(ProjectDir)Properties\licenses_vuoto.licx" "$(ProjectDir)Properties\licenses.licx"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

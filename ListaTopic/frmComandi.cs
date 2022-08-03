@@ -34,6 +34,7 @@ namespace ListaTopic
             InitializeComponent();
             Conn = new clsConn();
 
+            this.Size = new Size(1650, 1241);
         }
 
 
@@ -157,9 +158,78 @@ namespace ListaTopic
         #region "Accendi"
         private void btnAccendiTutto_Click(object sender, EventArgs e)
         {
-            string TopicCorridioio;
+            string TopicDali;
             string Messaggio;
+
+            TopicDali = "homeassistant/light/D2_A255";
             Messaggio = "{\"state\": \"ON\"}";
+            TopicDali += "/set";
+
+            string TopicRele;
+            TopicRele = "homeassistant/light/P2_A251";
+            TopicRele += "/set";
+
+
+            string TopicPareteLucernario;
+            TopicPareteLucernario = "homeassistant/light/R2_A011";
+            TopicPareteLucernario += "/set";
+
+
+            string TopicCucina;
+            TopicCucina = "homeassistant/light/R2_A018";
+            TopicCucina += "/set";
+
+
+            string TopicFioriera;
+            TopicFioriera = "homeassistant/light/R2_A016";
+            TopicFioriera += "/set";
+
+
+            string FarettiLedReception;
+            FarettiLedReception = "homeassistant/light/R2_A019";
+            FarettiLedReception += "/set";
+
+            string LuciScrivaniaStampanteAnna;
+            LuciScrivaniaStampanteAnna = "homeassistant/light/R2_A017";
+            LuciScrivaniaStampanteAnna += "/set";
+
+
+            string LuceSalaQuadro;
+            LuceSalaQuadro = "homeassistant/light/R2_A014";
+            LuceSalaQuadro += "/set";
+
+
+            string LuceAscensore;
+            LuceAscensore = "homeassistant/light/R2_A012";
+            LuceAscensore += "/set";
+
+
+            string LuceFuoriBagno;
+            LuceFuoriBagno = "homeassistant/light/R2_A024";
+            LuceFuoriBagno += "/set";
+
+
+            string TopicLuceAntiBagno;
+            TopicLuceAntiBagno = "homeassistant/light/R2_A020";
+            TopicLuceAntiBagno += "/set";
+
+
+            string TopicLuceSpecchioAntiBagno;
+            TopicLuceSpecchioAntiBagno = "homeassistant/light/R2_A023";
+            TopicLuceSpecchioAntiBagno += "/set";
+
+
+            string TopicLuceSpecchioBagno;
+            TopicLuceSpecchioBagno = "homeassistant/light/R2_A022";
+            TopicLuceSpecchioBagno += "/set";
+
+
+            string TopicLuceBagno;
+            TopicLuceBagno = "homeassistant/light/R2_A021";
+            TopicLuceBagno += "/set";
+
+
+            string TopicCorridioio;
             TopicCorridioio = "homeassistant/light/R1_A052";
             TopicCorridioio += "/set";
 
@@ -179,48 +249,121 @@ namespace ListaTopic
             TopicServer = "homeassistant/light/R1_A051";
             TopicServer += "/set";
 
-            string TopicDali;
-            TopicDali = "homeassistant/light/D2_A255";
-            TopicDali += "/set";
 
-            string TopicRele;
-            TopicRele = "homeassistant/light/P2_A251";
-            TopicRele += "/set";
-
-            
             if (mqttClient != null && mqttClient.IsConnected)
             {
+                mqttClient.Publish(TopicDali, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicRele, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicPareteLucernario, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicCucina, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicFioriera, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(FarettiLedReception, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuciScrivaniaStampanteAnna, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceSalaQuadro, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceAscensore, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceFuoriBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceAntiBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceSpecchioAntiBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceSpecchioBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceBagno, Encoding.UTF8.GetBytes(Messaggio));
+
                 mqttClient.Publish(TopicCorridioio, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicBagnoMagazzino, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicLaboratorio, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicMagazzino, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicServer, Encoding.UTF8.GetBytes(Messaggio));
-
-                mqttClient.Publish(TopicDali, Encoding.UTF8.GetBytes(Messaggio));
-                mqttClient.Publish(TopicRele, Encoding.UTF8.GetBytes(Messaggio));
             }
         }
 
         private void btnAccendiSecondoPiano_Click(object sender, EventArgs e)
         {
             string TopicDali;
-            string TopicRele;
-            
             string Messaggio;
-            Messaggio = "{\"state\": \"ON\"}";
+
             TopicDali = "homeassistant/light/D2_A255";
-            TopicRele = "homeassistant/light/P2_A251";
-
-            //Topic = Topic + (listBox2.SelectedItem as Dati).unique_id;
-
-
+            Messaggio = "{\"state\": \"ON\"}";
             TopicDali += "/set";
+
+            string TopicRele;
+            TopicRele = "homeassistant/light/P2_A251";
             TopicRele += "/set";
+
+
+            string TopicPareteLucernario;
+            TopicPareteLucernario = "homeassistant/light/R2_A011";
+            TopicPareteLucernario += "/set";
+
+
+            string TopicCucina;
+            TopicCucina = "homeassistant/light/R2_A018";
+            TopicCucina += "/set";
+
+
+            string TopicFioriera;
+            TopicFioriera = "homeassistant/light/R2_A016";
+            TopicFioriera += "/set";
+
+
+            string FarettiLedReception;
+            FarettiLedReception = "homeassistant/light/R2_A019";
+            FarettiLedReception += "/set";
+
+            string LuciScrivaniaStampanteAnna;
+            LuciScrivaniaStampanteAnna = "homeassistant/light/R2_A017";
+            LuciScrivaniaStampanteAnna += "/set";
+
+
+            string LuceSalaQuadro;
+            LuceSalaQuadro = "homeassistant/light/R2_A014";
+            LuceSalaQuadro += "/set";
+
+
+            string LuceAscensore;
+            LuceAscensore = "homeassistant/light/R2_A012";
+            LuceAscensore += "/set";
+
+
+            string LuceFuoriBagno;
+            LuceFuoriBagno = "homeassistant/light/R2_A024";
+            LuceFuoriBagno += "/set";
+
+
+            string TopicLuceAntiBagno;
+            TopicLuceAntiBagno = "homeassistant/light/R2_A020";
+            TopicLuceAntiBagno += "/set";
+
+
+            string TopicLuceSpecchioAntiBagno;
+            TopicLuceSpecchioAntiBagno = "homeassistant/light/R2_A023";
+            TopicLuceSpecchioAntiBagno += "/set";
+
+
+            string TopicLuceSpecchioBagno;
+            TopicLuceSpecchioBagno = "homeassistant/light/R2_A022";
+            TopicLuceSpecchioBagno += "/set";
+
+
+            string TopicLuceBagno;
+            TopicLuceBagno = "homeassistant/light/R2_A021";
+            TopicLuceBagno += "/set";
+
 
             if (mqttClient != null && mqttClient.IsConnected)
             {
                 mqttClient.Publish(TopicDali, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicRele, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicPareteLucernario, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicCucina, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicFioriera, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(FarettiLedReception, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuciScrivaniaStampanteAnna, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceSalaQuadro, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceAscensore, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceFuoriBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceAntiBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceSpecchioAntiBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceSpecchioBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceBagno, Encoding.UTF8.GetBytes(Messaggio));
 
             }
         }
@@ -255,7 +398,6 @@ namespace ListaTopic
             {
                 mqttClient.Publish(TopicCorridioio, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicBagnoMagazzino, Encoding.UTF8.GetBytes(Messaggio));
-
                 mqttClient.Publish(TopicLaboratorio, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicMagazzino, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicServer, Encoding.UTF8.GetBytes(Messaggio));
@@ -280,7 +422,7 @@ namespace ListaTopic
             TopicCucina += "/set";
 
             string TopicFarettiAurelio;
-            TopicFarettiAurelio = "homeassistant/light/R2_A009";
+            TopicFarettiAurelio = "homeassistant/light/D2_A011";
             TopicFarettiAurelio += "/set";
 
 
@@ -437,9 +579,78 @@ namespace ListaTopic
         #region "Spegni"
         private void btnSpegniTutto_Click(object sender, EventArgs e)
         {
-            string TopicCorridioio;
+            string TopicDali;
             string Messaggio;
-            Messaggio = "{\"state\": \"ON\"}";
+
+            TopicDali = "homeassistant/light/D2_A255";
+            Messaggio = "{\"state\": \"OFF\"}";
+            TopicDali += "/set";
+
+            string TopicRele;
+            TopicRele = "homeassistant/light/P2_A251";
+            TopicRele += "/set";
+
+
+            string TopicPareteLucernario;
+            TopicPareteLucernario = "homeassistant/light/R2_A011";
+            TopicPareteLucernario += "/set";
+
+
+            string TopicCucina;
+            TopicCucina = "homeassistant/light/R2_A018";
+            TopicCucina += "/set";
+
+
+            string TopicFioriera;
+            TopicFioriera = "homeassistant/light/R2_A016";
+            TopicFioriera += "/set";
+
+
+            string FarettiLedReception;
+            FarettiLedReception = "homeassistant/light/R2_A019";
+            FarettiLedReception += "/set";
+
+            string LuciScrivaniaStampanteAnna;
+            LuciScrivaniaStampanteAnna = "homeassistant/light/R2_A017";
+            LuciScrivaniaStampanteAnna += "/set";
+
+
+            string LuceSalaQuadro;
+            LuceSalaQuadro = "homeassistant/light/R2_A014";
+            LuceSalaQuadro += "/set";
+
+
+            string LuceAscensore;
+            LuceAscensore = "homeassistant/light/R2_A012";
+            LuceAscensore += "/set";
+
+
+            string LuceFuoriBagno;
+            LuceFuoriBagno = "homeassistant/light/R2_A024";
+            LuceFuoriBagno += "/set";
+
+
+            string TopicLuceAntiBagno;
+            TopicLuceAntiBagno = "homeassistant/light/R2_A020";
+            TopicLuceAntiBagno += "/set";
+
+
+            string TopicLuceSpecchioAntiBagno;
+            TopicLuceSpecchioAntiBagno = "homeassistant/light/R2_A023";
+            TopicLuceSpecchioAntiBagno += "/set";
+
+
+            string TopicLuceSpecchioBagno;
+            TopicLuceSpecchioBagno = "homeassistant/light/R2_A022";
+            TopicLuceSpecchioBagno += "/set";
+
+
+            string TopicLuceBagno;
+            TopicLuceBagno = "homeassistant/light/R2_A021";
+            TopicLuceBagno += "/set";
+
+
+            string TopicCorridioio;
             TopicCorridioio = "homeassistant/light/R1_A052";
             TopicCorridioio += "/set";
 
@@ -459,49 +670,108 @@ namespace ListaTopic
             TopicServer = "homeassistant/light/R1_A051";
             TopicServer += "/set";
 
-            string TopicDali;
-            TopicDali = "homeassistant/light/D2_A255";
-            TopicDali += "/set";
-
-            string TopicRele;
-            TopicRele = "homeassistant/light/P2_A251";
-            TopicRele += "/set";
-
 
             if (mqttClient != null && mqttClient.IsConnected)
             {
+                mqttClient.Publish(TopicDali, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicRele, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicPareteLucernario, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicCucina, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicFioriera, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(FarettiLedReception, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuciScrivaniaStampanteAnna, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceSalaQuadro, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceAscensore, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceFuoriBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceAntiBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceSpecchioAntiBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceSpecchioBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceBagno, Encoding.UTF8.GetBytes(Messaggio));
+
                 mqttClient.Publish(TopicCorridioio, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicBagnoMagazzino, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicLaboratorio, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicMagazzino, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicServer, Encoding.UTF8.GetBytes(Messaggio));
-
-                mqttClient.Publish(TopicDali, Encoding.UTF8.GetBytes(Messaggio));
-                mqttClient.Publish(TopicRele, Encoding.UTF8.GetBytes(Messaggio));
             }
         }
 
         private void btnSpegniSecondoPiano_Click(object sender, EventArgs e)
         {
             string TopicDali;
-            string TopicRele;
-
             string Messaggio;
-            Messaggio = "{\"state\": \"OFF\"}";
+
             TopicDali = "homeassistant/light/D2_A255";
-            TopicRele = "homeassistant/light/P2_A251";
-
-            //Topic = Topic + (listBox2.SelectedItem as Dati).unique_id;
-
-
+            Messaggio = "{\"state\": \"OFF\"}";
             TopicDali += "/set";
+
+            string TopicRele;
+            TopicRele = "homeassistant/light/P2_A251";
             TopicRele += "/set";
+
+            string TopicFioriera;
+            TopicFioriera = "homeassistant/light/R2_A016";
+            TopicFioriera += "/set";
+
+
+            string FarettiLedReception;
+            FarettiLedReception = "homeassistant/light/R2_A019";
+            FarettiLedReception += "/set";
+
+            string LuciScrivaniaStampanteAnna;
+            LuciScrivaniaStampanteAnna = "homeassistant/light/R2_A017";
+            LuciScrivaniaStampanteAnna += "/set";
+
+
+            string LuceSalaQuadro;
+            LuceSalaQuadro = "homeassistant/light/R2_A014";
+            LuceSalaQuadro += "/set";
+
+
+            string LuceAscensore;
+            LuceAscensore = "homeassistant/light/R2_A012";
+            LuceAscensore += "/set";
+
+
+            string LuceFuoriBagno;
+            LuceFuoriBagno = "homeassistant/light/R2_A024";
+            LuceFuoriBagno += "/set";
+
+
+            string TopicLuceAntiBagno;
+            TopicLuceAntiBagno = "homeassistant/light/R2_A020";
+            TopicLuceAntiBagno += "/set";
+
+
+            string TopicLuceSpecchioAntiBagno;
+            TopicLuceSpecchioAntiBagno = "homeassistant/light/R2_A023";
+            TopicLuceSpecchioAntiBagno += "/set";
+
+
+            string TopicLuceSpecchioBagno;
+            TopicLuceSpecchioBagno = "homeassistant/light/R2_A022";
+            TopicLuceSpecchioBagno += "/set";
+
+
+            string TopicLuceBagno;
+            TopicLuceBagno = "homeassistant/light/R2_A021";
+            TopicLuceBagno += "/set";
+
 
             if (mqttClient != null && mqttClient.IsConnected)
             {
                 mqttClient.Publish(TopicDali, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicRele, Encoding.UTF8.GetBytes(Messaggio));
-
+                mqttClient.Publish(TopicFioriera, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(FarettiLedReception, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuciScrivaniaStampanteAnna, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceSalaQuadro, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceAscensore, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(LuceFuoriBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceAntiBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceSpecchioAntiBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceSpecchioBagno, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicLuceBagno, Encoding.UTF8.GetBytes(Messaggio));
             }
         }
 
@@ -560,7 +830,7 @@ namespace ListaTopic
             TopicCucina += "/set";
 
             string TopicFarettiAurelio;
-            TopicFarettiAurelio = "homeassistant/light/R2_A009";
+            TopicFarettiAurelio = "homeassistant/light/D2_A011";
             TopicFarettiAurelio += "/set";
 
 
@@ -582,7 +852,7 @@ namespace ListaTopic
 
 
             string TopicFarettiClaudio;
-            TopicFarettiClaudio = "homeassistant/light/R2_A010";
+            TopicFarettiClaudio = "homeassistant/light/D2_A012";
             TopicFarettiClaudio += "/set";
 
             if (mqttClient != null && mqttClient.IsConnected)

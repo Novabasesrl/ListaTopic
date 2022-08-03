@@ -16,127 +16,49 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static ListaTopic.frmMappa;
-
-//using static ListaTopic.Form1;
-
-
+using static ListaTopic.frmMagazzino;
 using System.Threading;
+
 
 namespace ListaTopic
 {
-    public partial class frmMappa : Form
+    public partial class frmMagazzino : Form
     {
+
+
 
         private double New_W = 0;
         private double New_H = 0;
 
         private bool m_bEvitaResize = false;
-        //public string Percentuale;
-
 
         clsConn Conn;
         List<configurazioni_luci> Lista = new List<configurazioni_luci>();
         List<ucBottoneLuce> TuttiIBottoni = new List<ucBottoneLuce>();
 
-        public frmMappa()
+
+        public frmMagazzino()
         {
+            InitializeComponent();
+
             m_bEvitaResize = true;
 
             InitializeComponent();
 
-            ucLuceLedSalaRiunioni.Tag = "D2_A002";
-            ucLuceLampadario.Tag = "R2_A011";
-            ucLuceCucina.Tag = "R2_A018";
-            ucFarettiAurelio.Tag = "D2_A011";
-            ucScrivaniaAurelio.Tag = "D2_A008";
-            ucClaudioSopra.Tag = "D2_A015";
-            ucClaudioSotto1.Tag = "D2_A016";
-            ucClaudioSotto2.Tag = "D2_A017";
-            ucFarettiClaudio.Tag = "D2_A012";
-            ucFarettiUffici12.Tag = "D2_A009";
-            ucFarettiUffici34.Tag = "D2_A010";
-            ucScrivaniaGianluca.Tag = "D2_A003";
-            ucScrivaniaMattia.Tag = "D2_A005";
-            ucScrivaniaPaolo.Tag = "D2_A004";
-            ucLedReception.Tag = "D2_A001";
-            ucLuciScrivaniaStampanteAnna.Tag = "R2_A017";
-            ucScrivaniaAnna.Tag = "D2_A013";
-            ucScrivaniaDoraSopra.Tag = "D2_A018";
-            ucScrivaniaDoraSotto.Tag = "D2_A019";
-            ucScrivaniaDoraSotto2.Tag = "D2_A020";
-            ucFarettiLedReception.Tag = "R2_A019";
-            ucLuceAscensore.Tag = "R2_A012";
-            ucLuceSalaQuadro.Tag = "R2_A014";
-            ucFioriera.Tag = "R2_A016";
-            ucLuceLedScale.Tag = "D2_A006";
-            ucLuceAntiBagno.Tag = "R2_A020";
-            ucLuceBagno.Tag = "R2_A021";
-            ucLuceSpecchioBagno.Tag = "R2_A022";
-            ucLuceFuoriBagno.Tag = "R2_A024";
-            ucSpecchioAntiBagno.Tag = "R2_A023";
+
+            ucLuceMagazzino.Tag = "R1_A050";
+            ucLuceLaboratorio.Tag = "R1_A049";
+            ucLuceServer.Tag = "R1_A051";
+            ucLuceCorridoioMagazzino.Tag = "R1_A052";
+            ucLuceBagnoMagazzino.Tag = "R1_A053";
+
 
             // Aggiungi tutti
-            TuttiIBottoni.Add(ucLuceLedSalaRiunioni);
-
-            TuttiIBottoni.Add(ucLuceLampadario);
-
-            TuttiIBottoni.Add(ucLuceCucina);
-
-            TuttiIBottoni.Add(ucFarettiAurelio);
-
-            TuttiIBottoni.Add(ucScrivaniaAurelio);
-
-            TuttiIBottoni.Add(ucClaudioSopra);
-
-            TuttiIBottoni.Add(ucClaudioSotto1);
-
-            TuttiIBottoni.Add(ucClaudioSotto2);
-
-            TuttiIBottoni.Add(ucFarettiClaudio);
-
-            TuttiIBottoni.Add(ucFarettiUffici12);
-
-            TuttiIBottoni.Add(ucFarettiUffici34);
-
-            TuttiIBottoni.Add(ucScrivaniaGianluca);
-
-            TuttiIBottoni.Add(ucScrivaniaMattia);
-
-            TuttiIBottoni.Add(ucScrivaniaPaolo);
-
-            TuttiIBottoni.Add(ucLedReception);
-
-            TuttiIBottoni.Add(ucLuciScrivaniaStampanteAnna);
-
-            TuttiIBottoni.Add(ucScrivaniaAnna);
-
-            TuttiIBottoni.Add(ucScrivaniaDoraSopra);
-
-            TuttiIBottoni.Add(ucScrivaniaDoraSotto);
-
-            TuttiIBottoni.Add(ucScrivaniaDoraSotto2);
-
-            TuttiIBottoni.Add(ucFarettiLedReception);
-
-            TuttiIBottoni.Add(ucLuceAscensore);
-
-            TuttiIBottoni.Add(ucLuceSalaQuadro);
-
-            TuttiIBottoni.Add(ucFioriera);
-
-            TuttiIBottoni.Add(ucLuceLedScale);
-
-            TuttiIBottoni.Add(ucLuceAntiBagno);
-
-            TuttiIBottoni.Add(ucLuceBagno);
-
-            TuttiIBottoni.Add(ucLuceSpecchioBagno);
-
-            TuttiIBottoni.Add(ucLuceFuoriBagno);
-
-            TuttiIBottoni.Add(ucSpecchioAntiBagno);
-
+            TuttiIBottoni.Add(ucLuceMagazzino);
+            TuttiIBottoni.Add(ucLuceLaboratorio);
+            TuttiIBottoni.Add(ucLuceServer);
+            TuttiIBottoni.Add(ucLuceCorridoioMagazzino);
+            TuttiIBottoni.Add(ucLuceBagnoMagazzino);
 
             New_W = pictureBox1.Size.Width;
             New_H = pictureBox1.Size.Height;
@@ -144,7 +66,6 @@ namespace ListaTopic
             m_bEvitaResize = false;
 
             Conn = new clsConn();
-
         }
 
         private void AggiornaTasto(Dati ilDato)
@@ -156,10 +77,10 @@ namespace ListaTopic
 
             ucBottoneLuce ilBottone = TuttiIBottoni.Where(a => a.Tag.ToString() == ilDato.unique_id).FirstOrDefault();
 
-            if(ilBottone==null)
+            if (ilBottone == null)
             {
                 Console.WriteLine($"Il Bottone con unique_id:{ilDato.unique_id} non è stato trovato!");
-                return; 
+                return;
             }
 
             ilBottone.Invoke((MethodInvoker)(() =>
@@ -170,7 +91,8 @@ namespace ListaTopic
         }
 
 
-        private void frmMappa_Load(object sender, EventArgs e)
+
+        private void frmMagazzino_Load(object sender, EventArgs e)
         {
             Form1 frm = InitForm1();
 
@@ -182,6 +104,15 @@ namespace ListaTopic
 
             // Rende la form a schermo intero 
             WindowState = FormWindowState.Maximized;
+
+            ucLuceMagazzino.BringToFront();
+            ucLuceLaboratorio.BringToFront();
+            ucLuceServer.BringToFront();
+            ucLuceCorridoioMagazzino.BringToFront();
+            ucLuceBagnoMagazzino.BringToFront();
+
+            btnPianoSuperiore.BringToFront();
+            btnPianoInferiore.BringToFront();
 
         }
 
@@ -267,75 +198,31 @@ namespace ListaTopic
         #endregion
 
 
-        private void frmMappa_Resize(object sender, EventArgs e)
+        private void frmMagazzino_Resize(object sender, EventArgs e)
         {
             if (m_bEvitaResize) return;
 
             double W = New_W;
             double H = New_H;
-            
+
             New_W = pictureBox1.Size.Width;
             New_H = pictureBox1.Size.Height;
 
 
             // ---------------------- BOTTONE ---------------------
 
-            ResizeButton(btnVisualizzaComandi, W, H);
+            ResizeButton(btnPianoSuperiore, W, H);
             ResizeButton(btnPianoInferiore, W, H);
 
 
+            // ------------------------ LUCI MAGAZZINO ---------------------------
 
+            ResizeUserControl(ucLuceMagazzino, W, H);
+            ResizeUserControl(ucLuceLaboratorio, W, H);
+            ResizeUserControl(ucLuceServer, W, H);
+            ResizeUserControl(ucLuceCorridoioMagazzino, W, H);
+            ResizeUserControl(ucLuceBagnoMagazzino, W, H);
 
-
-            // ------------------------- LUCI SALA RIUNIONI ---------------------------------
-
-            ResizeUserControl(ucLuceLedSalaRiunioni, W, H);
-
-            ResizeUserControl(ucLuceLampadario, W, H);
-
-            ResizeUserControl(ucLuceCucina, W, H);
-
-            ResizeUserControl(ucFarettiAurelio, W, H);
-            ResizeUserControl(ucScrivaniaAurelio, W, H);
-            ResizeUserControl(ucClaudioSopra, W, H);
-            ResizeUserControl(ucClaudioSotto1, W, H);
-            ResizeUserControl(ucClaudioSotto2, W, H);
-            ResizeUserControl(ucFarettiClaudio, W, H);
-
-
-            // ------------------------- LUCI UFFICIO TECNICO ---------------------------
-
-            ResizeUserControl(ucFarettiUffici12, W, H);
-            ResizeUserControl(ucFarettiUffici34, W, H);
-            ResizeUserControl(ucScrivaniaGianluca, W, H);
-            ResizeUserControl(ucScrivaniaMattia, W, H);
-            ResizeUserControl(ucScrivaniaPaolo, W, H);
-
-
-
-            // --------------------------- LUCI RECEPTION -------------------------------
-
-            ResizeUserControl(ucLedReception, W, H);
-            ResizeUserControl(ucLuciScrivaniaStampanteAnna, W, H);
-            ResizeUserControl(ucScrivaniaAnna, W, H);
-            ResizeUserControl(ucScrivaniaDoraSopra, W, H);
-            ResizeUserControl(ucScrivaniaDoraSotto, W, H);
-            ResizeUserControl(ucScrivaniaDoraSotto2, W, H);
-            ResizeUserControl(ucFarettiLedReception, W, H);
-            ResizeUserControl(ucLuceAscensore, W, H);
-            ResizeUserControl(ucLuceSalaQuadro, W, H);
-            ResizeUserControl(ucFioriera, W, H);
-            ResizeUserControl(ucLuceLedScale, W, H);
-
-
-
-            // ---------------------------- LUCI BAGNO --------------------------------------
-
-            ResizeUserControl(ucLuceAntiBagno, W, H);
-            ResizeUserControl(ucLuceBagno, W, H);
-            ResizeUserControl(ucLuceSpecchioBagno, W, H);
-            ResizeUserControl(ucLuceFuoriBagno, W, H);
-            ResizeUserControl(ucSpecchioAntiBagno, W, H);
         }
 
 
@@ -350,6 +237,7 @@ namespace ListaTopic
             us.Location = new Point((int)New_X, (int)New_Y);
         }
 
+
         private void ResizeButton(System.Windows.Forms.Button btn, double W, double H)
         {
             double X = btn.Location.X;
@@ -362,10 +250,11 @@ namespace ListaTopic
         }
 
 
-        private void ucLuceLampadario_Click(object sender, EventArgs e)
+        private void ucLuceMagazzino_Click(object sender, EventArgs e)
         {
             GestisciLuce(((ucBottoneLuce)sender).Tag.ToString(), (ucBottoneLuce)sender);
         }
+
 
         private void GestisciLuce(string NomeUniqueId, ucBottoneLuce ucBottone)
         {
@@ -375,7 +264,7 @@ namespace ListaTopic
             Form1 frm = InitForm1();
             frm.TopicSpecifico = TopicSalaRiunioni;
 
-           
+
 
             Dati dato = DatiLuci.Where(a => a.unique_id == (NomeUniqueId)).FirstOrDefault();
             frm.Luminosita = dato.Curr_Brightness;
@@ -403,20 +292,27 @@ namespace ListaTopic
             ucBottone.SetImmagine(Immagine);
         }
 
-        private void btnVisualizzaComandi_Click(object sender, EventArgs e)
+
+        #region "Navigatore"
+
+        private void btnPianoSuperiore_Click(object sender, EventArgs e)
         {
-            frmComandi frm = new frmComandi();
 
+            frmMappa frm = new frmMappa();
             frm.ShowDialog();
-        }
+            this.Close();
 
-        
+        }
 
         private void btnPianoInferiore_Click(object sender, EventArgs e)
         {
-            frmMagazzino frm = new frmMagazzino();
-            frm.ShowDialog();
-            this.Close();
+            //frmMappa frm = new frmMappa();
+            //frm.ShowDialog();
+            //this.Close();
         }
+
+
+
+        #endregion
     }
 }

@@ -40,6 +40,7 @@ namespace ListaTopic
         public string StatoLuce;
         public string Luce;
         public int Luminosita;
+        //public string Id;
 
         //public configurazioni_luci GetDatiSelezionati()
         //{
@@ -102,8 +103,8 @@ namespace ListaTopic
 
             if (Luce == "OFF")
             {
-                DisattivaSpegni();
                 AttivaAccendi();
+                DisattivaSpegni();
             }
             else
             {
@@ -123,9 +124,28 @@ namespace ListaTopic
 
         private void AfterMove()
         {
+
             lblLuminosita.Text = Convert.ToString(trbLuminosita.Value);
             Percentuale = Convert.ToInt32(lblLuminosita.Text);
         }
+
+
+        private void ImpostaTrackBar()
+        {
+            Dati dati = new Dati();
+
+            
+
+
+
+
+
+
+
+
+            trbLuminosita.Value = dati.Curr_Brightness;
+        }
+
 
         private void DisattivaSpegni()
         {
@@ -170,23 +190,24 @@ namespace ListaTopic
                 string Topic;
                 string Messaggio;
                 Messaggio = "{\"state\": \"ON\"}";
-                //Topic = "homeassistant/light/";
                 Topic = TopicSpecifico;
-                //Topic = Topic + (listBox2.SelectedItem as Dati).unique_id;
-                //Topic += "/set";
 
                 if (mqttClient != null && mqttClient.IsConnected)
                 {
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
                 }
+
+                ImpostaTrackBar();
             }
             //homeassistant / light / 
             StatoLuce = "ON";
             DisattivaAccendi();
             AttivaSpegni();
+            AfterMove();
+
         }
 
-      
+
 
 
         private void btnSpegni_Click(object sender, EventArgs e)
@@ -209,21 +230,21 @@ namespace ListaTopic
                 string Topic;
                 string Messaggio;
                 Messaggio = "{\"state\": \"OFF\"}";
-                //Topic = "homeassistant/light/";
                 Topic = TopicSpecifico;
-                //Topic = Topic + (listBox2.SelectedItem as Dati).unique_id;
-                //Topic += "/set";
                 if (mqttClient != null && mqttClient.IsConnected)
                 {
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
                 }
+                ImpostaTrackBar();
             }
             StatoLuce = "OFF";
             AttivaAccendi();
             DisattivaSpegni();
+            AfterMove();
+
         }
 
-       
+
         #endregion
 
 
