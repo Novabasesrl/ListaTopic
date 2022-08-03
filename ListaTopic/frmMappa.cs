@@ -196,6 +196,8 @@ namespace ListaTopic
         #region "Mqtt"
         MqttClient mqttClient;
 
+
+
         private List<Dati> DatiLuci = new List<Dati>();
 
         private void MqttClient_MqttMsgPublishReceived(object sender, uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs e)
