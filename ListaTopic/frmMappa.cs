@@ -177,7 +177,7 @@ namespace ListaTopic
 
             mqttClient = new MqttClient("192.168.46.133", 1883, false, null, null, MqttSslProtocols.None);
             mqttClient.MqttMsgPublishReceived += MqttClient_MqttMsgPublishReceived;
-            mqttClient.Connect("Test");
+            mqttClient.Connect("Mappa");
             mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
             // Rende la form a schermo intero 
@@ -401,8 +401,8 @@ namespace ListaTopic
                 Immagine = false;
             }
 
-            ucBottone.SetLuminosità(frm.Percentuale);
-            ucBottone.SetImmagine(Immagine);
+            // ucBottone.SetLuminosità(frm.Percentuale);
+            // ucBottone.SetImmagine(Immagine);
         }
 
         private void btnVisualizzaComandi_Click(object sender, EventArgs e)

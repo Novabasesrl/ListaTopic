@@ -40,7 +40,6 @@ namespace ListaTopic
         public string StatoLuce;
         public string Luce;
         public int Luminosita;
-        //public string Id;
 
         //public configurazioni_luci GetDatiSelezionati()
         //{
@@ -116,35 +115,16 @@ namespace ListaTopic
 
             timer2.Start();
             AfterMove();
-
-
-
-            AfterMove();
         }
 
         private void AfterMove()
         {
-
             lblLuminosita.Text = Convert.ToString(trbLuminosita.Value);
             Percentuale = Convert.ToInt32(lblLuminosita.Text);
         }
 
 
-        private void ImpostaTrackBar()
-        {
-            Dati dati = new Dati();
-
-            
-
-
-
-
-
-
-
-
-            trbLuminosita.Value = dati.Curr_Brightness;
-        }
+        
 
 
         private void DisattivaSpegni()
@@ -184,6 +164,7 @@ namespace ListaTopic
                 {
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
                 }
+
             }
             else
             {
@@ -197,7 +178,9 @@ namespace ListaTopic
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
                 }
 
-                ImpostaTrackBar();
+                trbLuminosita.Value = 100;
+                timer1.Stop();
+
             }
             //homeassistant / light / 
             StatoLuce = "ON";
@@ -224,6 +207,7 @@ namespace ListaTopic
                 {
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
                 }
+
             }
             else
             {
@@ -235,13 +219,14 @@ namespace ListaTopic
                 {
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
                 }
-                ImpostaTrackBar();
+                trbLuminosita.Value = 0;
+                timer1.Stop();
+
             }
             StatoLuce = "OFF";
             AttivaAccendi();
             DisattivaSpegni();
             AfterMove();
-
         }
 
 
@@ -332,6 +317,11 @@ namespace ListaTopic
             timer2.Enabled = false;
             timer1.Stop();
             timer1.Start();
+            if (btnSpegni.Enabled == false)
+            {
+                AttivaSpegni();
+                DisattivaAccendi();
+            }
 
             AfterMove();
         }

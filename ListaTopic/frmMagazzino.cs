@@ -99,7 +99,7 @@ namespace ListaTopic
 
             mqttClient = new MqttClient("192.168.46.133", 1883, false, null, null, MqttSslProtocols.None);
             mqttClient.MqttMsgPublishReceived += MqttClient_MqttMsgPublishReceived;
-            mqttClient.Connect("Test");
+            mqttClient.Connect("Magazzino");
             mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
             // Rende la form a schermo intero 
@@ -258,11 +258,11 @@ namespace ListaTopic
 
         private void GestisciLuce(string NomeUniqueId, ucBottoneLuce ucBottone)
         {
-            string TopicSalaRiunioni = $"homeassistant/light/{NomeUniqueId}";
-            TopicSalaRiunioni += "/set";
+            string TopicMagazzino = $"homeassistant/light/{NomeUniqueId}";
+            TopicMagazzino += "/set";
 
             Form1 frm = InitForm1();
-            frm.TopicSpecifico = TopicSalaRiunioni;
+            frm.TopicSpecifico = TopicMagazzino;
 
 
 
@@ -288,8 +288,8 @@ namespace ListaTopic
                 Immagine = false;
             }
 
-            ucBottone.SetLuminosità(frm.Percentuale);
-            ucBottone.SetImmagine(Immagine);
+            //ucBottone.SetLuminosità(frm.Percentuale);
+            //ucBottone.SetImmagine(Immagine);
         }
 
 

@@ -56,7 +56,7 @@
             this.btnPianoSuperiore.BackColor = System.Drawing.Color.White;
             this.btnPianoSuperiore.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPianoSuperiore.BackgroundImage")));
             this.btnPianoSuperiore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPianoSuperiore.Location = new System.Drawing.Point(1549, 308);
+            this.btnPianoSuperiore.Location = new System.Drawing.Point(1549, 412);
             this.btnPianoSuperiore.Name = "btnPianoSuperiore";
             this.btnPianoSuperiore.Size = new System.Drawing.Size(76, 70);
             this.btnPianoSuperiore.TabIndex = 7;
@@ -69,7 +69,7 @@
             this.btnPianoInferiore.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPianoInferiore.BackgroundImage")));
             this.btnPianoInferiore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPianoInferiore.Enabled = false;
-            this.btnPianoInferiore.Location = new System.Drawing.Point(1549, 412);
+            this.btnPianoInferiore.Location = new System.Drawing.Point(1549, 536);
             this.btnPianoInferiore.Name = "btnPianoInferiore";
             this.btnPianoInferiore.Size = new System.Drawing.Size(76, 70);
             this.btnPianoInferiore.TabIndex = 8;

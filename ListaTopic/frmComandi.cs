@@ -45,10 +45,12 @@ namespace ListaTopic
 
         private void frmComandi_Load(object sender, EventArgs e)
         {
+            //Form1 frm = InitForm1();
+
             mqttClient = new MqttClient("192.168.46.133", 1883, false, null, null, MqttSslProtocols.None);
             //mqttClient.MqttMsgPublishReceived -= MqttClient_MqttMsgPublishReceived;
             mqttClient.MqttMsgPublishReceived += MqttClient_MqttMsgPublishReceived;
-            mqttClient.Connect("Test");
+            mqttClient.Connect("Comandi");
             mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
 
@@ -86,6 +88,13 @@ namespace ListaTopic
            
         }
 
+
+        private Form1 InitForm1()
+        {
+            Form1 f = new Form1();
+            f.Init(mqttClient, DatiLuci, Lista);
+            return f;
+        }
 
         #region "Mqtt"
         MqttClient mqttClient;
@@ -444,7 +453,7 @@ namespace ListaTopic
 
 
             string TopicFarettiClaudio;
-            TopicFarettiClaudio = "homeassistant/light/R2_A010";
+            TopicFarettiClaudio = "homeassistant/light/D2_A012";
             TopicFarettiClaudio += "/set";
 
             if (mqttClient != null && mqttClient.IsConnected)
@@ -709,6 +718,17 @@ namespace ListaTopic
             TopicRele = "homeassistant/light/P2_A251";
             TopicRele += "/set";
 
+
+            string TopicPareteLucernario;
+            TopicPareteLucernario = "homeassistant/light/R2_A011";
+            TopicPareteLucernario += "/set";
+
+
+            string TopicCucina;
+            TopicCucina = "homeassistant/light/R2_A018";
+            TopicCucina += "/set";
+
+
             string TopicFioriera;
             TopicFioriera = "homeassistant/light/R2_A016";
             TopicFioriera += "/set";
@@ -762,6 +782,10 @@ namespace ListaTopic
             {
                 mqttClient.Publish(TopicDali, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicRele, Encoding.UTF8.GetBytes(Messaggio));
+
+                mqttClient.Publish(TopicPareteLucernario, Encoding.UTF8.GetBytes(Messaggio));
+                mqttClient.Publish(TopicCucina, Encoding.UTF8.GetBytes(Messaggio));
+
                 mqttClient.Publish(TopicFioriera, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(FarettiLedReception, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(LuciScrivaniaStampanteAnna, Encoding.UTF8.GetBytes(Messaggio));

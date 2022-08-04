@@ -190,7 +190,7 @@
             // 
             this.ucClaudioSotto1.BackColor = System.Drawing.Color.White;
             this.ucClaudioSotto1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucClaudioSotto1.Location = new System.Drawing.Point(296, 236);
+            this.ucClaudioSotto1.Location = new System.Drawing.Point(240, 399);
             this.ucClaudioSotto1.Margin = new System.Windows.Forms.Padding(6);
             this.ucClaudioSotto1.Name = "ucClaudioSotto1";
             this.ucClaudioSotto1.Size = new System.Drawing.Size(62, 87);
@@ -344,7 +344,7 @@
             // 
             this.ucClaudioSotto2.BackColor = System.Drawing.Color.White;
             this.ucClaudioSotto2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucClaudioSotto2.Location = new System.Drawing.Point(105, 236);
+            this.ucClaudioSotto2.Location = new System.Drawing.Point(129, 399);
             this.ucClaudioSotto2.Margin = new System.Windows.Forms.Padding(6);
             this.ucClaudioSotto2.Name = "ucClaudioSotto2";
             this.ucClaudioSotto2.Size = new System.Drawing.Size(62, 87);
@@ -355,7 +355,7 @@
             // 
             this.ucClaudioSopra.BackColor = System.Drawing.Color.White;
             this.ucClaudioSopra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucClaudioSopra.Location = new System.Drawing.Point(185, 384);
+            this.ucClaudioSopra.Location = new System.Drawing.Point(204, 236);
             this.ucClaudioSopra.Margin = new System.Windows.Forms.Padding(6);
             this.ucClaudioSopra.Name = "ucClaudioSopra";
             this.ucClaudioSopra.Size = new System.Drawing.Size(62, 87);
@@ -423,7 +423,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucLuceLedSalaRiunioni.BackColor = System.Drawing.Color.White;
             this.ucLuceLedSalaRiunioni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucLuceLedSalaRiunioni.Location = new System.Drawing.Point(570, 894);
+            this.ucLuceLedSalaRiunioni.Location = new System.Drawing.Point(609, 835);
             this.ucLuceLedSalaRiunioni.Margin = new System.Windows.Forms.Padding(6);
             this.ucLuceLedSalaRiunioni.MaximumSize = new System.Drawing.Size(59, 103);
             this.ucLuceLedSalaRiunioni.MinimumSize = new System.Drawing.Size(59, 103);
