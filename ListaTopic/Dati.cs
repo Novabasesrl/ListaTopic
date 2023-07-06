@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListaTopic
+namespace GestioneLuci
 {
 
     public class Dati
@@ -22,6 +22,8 @@ namespace ListaTopic
 
         public int Curr_Brightness { get; set; }
         public string Curr_State { get; set; }
+
+        public bool Attivo { get; set; }
 
     }
 

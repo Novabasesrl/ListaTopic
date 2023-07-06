@@ -1,6 +1,6 @@
 ﻿namespace GestioneLuci
 {
-    partial class Form1
+    partial class frmGestioneConfigurazioni
     {
         /// <summary>
         /// Variabile di progettazione necessaria.
@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -47,6 +46,7 @@
             this.btnEliminaConfigurazione = new System.Windows.Forms.Button();
             this.trbLuminosita = new System.Windows.Forms.TrackBar();
             this.configurazioniluciBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trbLuminosita)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurazioniluciBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -55,12 +55,6 @@
             // 
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Enabled = true;
-            this.timer2.Interval = 500;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // openFileDialog1
             // 
@@ -75,36 +69,34 @@
             // txtConfigurazione
             // 
             this.txtConfigurazione.Enabled = false;
-            this.txtConfigurazione.Location = new System.Drawing.Point(847, 720);
-            this.txtConfigurazione.Margin = new System.Windows.Forms.Padding(6);
+            this.txtConfigurazione.Location = new System.Drawing.Point(424, 374);
             this.txtConfigurazione.Name = "txtConfigurazione";
-            this.txtConfigurazione.Size = new System.Drawing.Size(470, 31);
+            this.txtConfigurazione.Size = new System.Drawing.Size(237, 20);
             this.txtConfigurazione.TabIndex = 49;
             // 
             // txtValoreLuminosita
             // 
-            this.txtValoreLuminosita.Location = new System.Drawing.Point(78, 794);
-            this.txtValoreLuminosita.Margin = new System.Windows.Forms.Padding(4);
+            this.txtValoreLuminosita.Location = new System.Drawing.Point(39, 413);
+            this.txtValoreLuminosita.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtValoreLuminosita.Name = "txtValoreLuminosita";
-            this.txtValoreLuminosita.Size = new System.Drawing.Size(244, 31);
+            this.txtValoreLuminosita.Size = new System.Drawing.Size(124, 20);
             this.txtValoreLuminosita.TabIndex = 48;
             // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 25;
-            this.listBox2.Location = new System.Drawing.Point(13, 13);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox2.Location = new System.Drawing.Point(6, 7);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(894, 404);
+            this.listBox2.Size = new System.Drawing.Size(449, 212);
             this.listBox2.TabIndex = 42;
             // 
             // btnSalvaConfigurazione
             // 
-            this.btnSalvaConfigurazione.Location = new System.Drawing.Point(847, 588);
-            this.btnSalvaConfigurazione.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalvaConfigurazione.Location = new System.Drawing.Point(424, 306);
+            this.btnSalvaConfigurazione.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSalvaConfigurazione.Name = "btnSalvaConfigurazione";
-            this.btnSalvaConfigurazione.Size = new System.Drawing.Size(164, 92);
+            this.btnSalvaConfigurazione.Size = new System.Drawing.Size(82, 48);
             this.btnSalvaConfigurazione.TabIndex = 45;
             this.btnSalvaConfigurazione.Text = "Salva";
             this.btnSalvaConfigurazione.UseVisualStyleBackColor = true;
@@ -112,10 +104,10 @@
             // 
             // btnImpostaLuminosita
             // 
-            this.btnImpostaLuminosita.Location = new System.Drawing.Point(345, 778);
-            this.btnImpostaLuminosita.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImpostaLuminosita.Location = new System.Drawing.Point(172, 405);
+            this.btnImpostaLuminosita.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnImpostaLuminosita.Name = "btnImpostaLuminosita";
-            this.btnImpostaLuminosita.Size = new System.Drawing.Size(140, 63);
+            this.btnImpostaLuminosita.Size = new System.Drawing.Size(70, 33);
             this.btnImpostaLuminosita.TabIndex = 44;
             this.btnImpostaLuminosita.Text = "Imposta";
             this.btnImpostaLuminosita.UseVisualStyleBackColor = true;
@@ -124,10 +116,10 @@
             // btnAccendi
             // 
             this.btnAccendi.Enabled = false;
-            this.btnAccendi.Location = new System.Drawing.Point(13, 438);
-            this.btnAccendi.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAccendi.Location = new System.Drawing.Point(6, 228);
+            this.btnAccendi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAccendi.Name = "btnAccendi";
-            this.btnAccendi.Size = new System.Drawing.Size(164, 65);
+            this.btnAccendi.Size = new System.Drawing.Size(82, 34);
             this.btnAccendi.TabIndex = 40;
             this.btnAccendi.Text = "Accendi";
             this.btnAccendi.UseVisualStyleBackColor = true;
@@ -135,10 +127,10 @@
             // 
             // btnCaricaFileConfigurazione
             // 
-            this.btnCaricaFileConfigurazione.Location = new System.Drawing.Point(1019, 586);
-            this.btnCaricaFileConfigurazione.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCaricaFileConfigurazione.Location = new System.Drawing.Point(510, 305);
+            this.btnCaricaFileConfigurazione.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCaricaFileConfigurazione.Name = "btnCaricaFileConfigurazione";
-            this.btnCaricaFileConfigurazione.Size = new System.Drawing.Size(164, 92);
+            this.btnCaricaFileConfigurazione.Size = new System.Drawing.Size(82, 48);
             this.btnCaricaFileConfigurazione.TabIndex = 46;
             this.btnCaricaFileConfigurazione.Text = "Carica file";
             this.btnCaricaFileConfigurazione.UseVisualStyleBackColor = true;
@@ -147,10 +139,10 @@
             // btnSpegni
             // 
             this.btnSpegni.Enabled = false;
-            this.btnSpegni.Location = new System.Drawing.Point(204, 438);
-            this.btnSpegni.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSpegni.Location = new System.Drawing.Point(102, 228);
+            this.btnSpegni.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSpegni.Name = "btnSpegni";
-            this.btnSpegni.Size = new System.Drawing.Size(164, 65);
+            this.btnSpegni.Size = new System.Drawing.Size(82, 34);
             this.btnSpegni.TabIndex = 41;
             this.btnSpegni.Text = "Spegni";
             this.btnSpegni.UseVisualStyleBackColor = true;
@@ -159,19 +151,19 @@
             // lblLuminosita
             // 
             this.lblLuminosita.AutoSize = true;
-            this.lblLuminosita.Location = new System.Drawing.Point(100, 607);
-            this.lblLuminosita.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLuminosita.Location = new System.Drawing.Point(50, 316);
+            this.lblLuminosita.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLuminosita.Name = "lblLuminosita";
-            this.lblLuminosita.Size = new System.Drawing.Size(58, 25);
+            this.lblLuminosita.Size = new System.Drawing.Size(29, 13);
             this.lblLuminosita.TabIndex = 43;
             this.lblLuminosita.Text = "lable";
             // 
             // btnEliminaConfigurazione
             // 
-            this.btnEliminaConfigurazione.Location = new System.Drawing.Point(1191, 586);
-            this.btnEliminaConfigurazione.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEliminaConfigurazione.Location = new System.Drawing.Point(596, 305);
+            this.btnEliminaConfigurazione.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEliminaConfigurazione.Name = "btnEliminaConfigurazione";
-            this.btnEliminaConfigurazione.Size = new System.Drawing.Size(224, 92);
+            this.btnEliminaConfigurazione.Size = new System.Drawing.Size(112, 48);
             this.btnEliminaConfigurazione.TabIndex = 47;
             this.btnEliminaConfigurazione.Text = "Elimina configurazione";
             this.btnEliminaConfigurazione.UseVisualStyleBackColor = true;
@@ -179,11 +171,10 @@
             // 
             // trbLuminosita
             // 
-            this.trbLuminosita.Location = new System.Drawing.Point(46, 678);
-            this.trbLuminosita.Margin = new System.Windows.Forms.Padding(6);
+            this.trbLuminosita.Location = new System.Drawing.Point(23, 353);
             this.trbLuminosita.Maximum = 101;
             this.trbLuminosita.Name = "trbLuminosita";
-            this.trbLuminosita.Size = new System.Drawing.Size(557, 90);
+            this.trbLuminosita.Size = new System.Drawing.Size(278, 45);
             this.trbLuminosita.TabIndex = 50;
             this.trbLuminosita.ValueChanged += new System.EventHandler(this.trbLuminosita_ValueChanged);
             // 
@@ -191,12 +182,18 @@
             // 
             this.configurazioniluciBindingSource.DataSource = typeof(GestioneLuci.configurazioni_luci);
             // 
-            // Form1
+            // timer2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 500;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // frmGestioneConfigurazioni
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2740, 1171);
+            this.ClientSize = new System.Drawing.Size(1370, 552);
             this.Controls.Add(this.txtConfigurazione);
             this.Controls.Add(this.txtValoreLuminosita);
             this.Controls.Add(this.listBox2);
@@ -208,8 +205,8 @@
             this.Controls.Add(this.lblLuminosita);
             this.Controls.Add(this.btnEliminaConfigurazione);
             this.Controls.Add(this.trbLuminosita);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "frmGestioneConfigurazioni";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestione luci";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -222,7 +219,6 @@
 
         #endregion
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -239,6 +235,7 @@
         private System.Windows.Forms.Label lblLuminosita;
         private System.Windows.Forms.Button btnEliminaConfigurazione;
         private System.Windows.Forms.TrackBar trbLuminosita;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 

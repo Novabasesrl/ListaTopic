@@ -16,12 +16,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static ListaTopic.frmComandi;
+using static GestioneLuci.frmComandi;
 using System.Threading;
 
 
 
-namespace ListaTopic
+namespace GestioneLuci
 {
     public partial class frmComandi : Form
     {
@@ -53,29 +53,7 @@ namespace ListaTopic
             mqttClient.Connect("Comandi");
             mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
-
-            // Luminosita per tutto il secondo piano
-
-            // The Maximum property sets the value of the track bar when
-            // the slider is all the way to the right.
-            trbImpostaLuminositaTutto.Maximum = 101;
-
-            // The TickFrequency property establishes how many positions
-            // are between each tick-mark.
-            trbImpostaLuminositaTutto.TickFrequency = 10;
-
-            // The LargeChange property sets how many positions to move
-            // if the bar is clicked on either side of the slider.
-            trbImpostaLuminositaTutto.LargeChange = 1;
-
-            // The SmallChange property sets how many positions to move
-            // if the keyboard arrows are used to move the slider.
-            trbImpostaLuminositaTutto.SmallChange = 2;
-
-
-            //WindowState = FormWindowState.Maximized;
-
-            label1.Text = Convert.ToString(trbImpostaLuminositaTutto.Value);
+            Carica();
         }
 
 
@@ -85,13 +63,13 @@ namespace ListaTopic
             mqttClient = _mqttClient;
             DatiLuci = _DatiLuci;
             Lista = _ConfigLuci;
-           
+
         }
 
 
-        private Form1 InitForm1()
+        private frmGestioneSinglaLuce InitForm1()
         {
-            Form1 f = new Form1();
+            frmGestioneSinglaLuce f = new frmGestioneSinglaLuce();
             f.Init(mqttClient, DatiLuci, Lista);
             return f;
         }
@@ -479,7 +457,7 @@ namespace ListaTopic
             Messaggio = "{\"state\": \"ON\"}";
             TopicBarraLedReception = "homeassistant/light/D2_A001";
             TopicBarraLedReception += "/set";
-            
+
 
             string LuciScrivaniaStampanteAnna;
             LuciScrivaniaStampanteAnna = "homeassistant/light/R2_A017";
@@ -554,7 +532,7 @@ namespace ListaTopic
 
 
             string TopicGianluca;
-            
+
             TopicGianluca = "homeassistant/light/D2_A003";
             TopicGianluca += "/set";
 
@@ -567,7 +545,7 @@ namespace ListaTopic
             TopicPaolo = "homeassistant/light/D2_A004";
             TopicPaolo += "/set";
 
-            
+
 
 
             if (mqttClient != null && mqttClient.IsConnected)
@@ -577,7 +555,7 @@ namespace ListaTopic
                 mqttClient.Publish(TopicGianluca, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicMattia, Encoding.UTF8.GetBytes(Messaggio));
                 mqttClient.Publish(TopicPaolo, Encoding.UTF8.GetBytes(Messaggio));
-                
+
             }
         }
 
@@ -1021,20 +999,9 @@ namespace ListaTopic
             }
         }
 
-        private void btnImpostaValoreTrb_Click(object sender, EventArgs e)
-        {
-            int Luminosita;
-            Luminosita = Convert.ToInt32(txtImpostaValoreTutteLuci.Text);
-            trbImpostaLuminositaTutto.Value = Luminosita;
-        }
 
-        private void trbImpostaLuminositaTutto_ValueChanged(object sender, EventArgs e)
-        {
-            timer3.Stop();
-            timer3.Start();
 
-            label1.Text = Convert.ToString(trbImpostaLuminositaTutto.Value);
-        }
+
         #endregion
 
 
@@ -1042,7 +1009,6 @@ namespace ListaTopic
         private void btnCarica_Click(object sender, EventArgs e)
         {
             Carica();
-
         }
 
         private void Carica()
@@ -1142,13 +1108,12 @@ namespace ListaTopic
             else
             {
 
-                string text = "Inserisci nome";
-                string caption = "";
+                /* string text = "Inserisci nome";
+                 string caption = "";
 
 
-                Configurazione.Nome = ShowDialog(text, caption);
+                 Configurazione.Nome = ShowDialog(text, caption);*/
                 string json = JsonConvert.SerializeObject(DatiLuci);
-
                 Configurazione.Json = json;
 
                 gvConfigurazioni.RefreshData();
@@ -1200,7 +1165,11 @@ namespace ListaTopic
                 Topic = "homeassistant/light/";
                 Topic += Dati.unique_id;
                 Topic += "/set";
-                
+
+                Console.WriteLine($"{Topic} -> {Messaggio}");
+
+
+
                 if (Topic != "homeassistant/light/D2_A255/set")
                 {
                     mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
@@ -1222,6 +1191,13 @@ namespace ListaTopic
             }
             else
             {
+
+                string text = "Inserisci nome";
+                string caption = Configurazione.Nome;
+
+
+                Configurazione.Nome = ShowDialog(text, caption);
+
                 Conn.ctx.configurazioni_luci.Add(Configurazione);
                 gvConfigurazioni.RefreshData();
                 Conn.ctx.SaveChanges();
@@ -1232,28 +1208,14 @@ namespace ListaTopic
         }
 
 
+
+
         #endregion
 
-       
-
-        private void timer3_Tick(object sender, EventArgs e)
+        private void frmComandi_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string Topic;
-            string Messaggio;
-            Messaggio = "{\"brightness\": " + trbImpostaLuminositaTutto.Value +
-                ",\"state\": \"ON\"} ";
-            Topic = "homeassistant/light/D2_A255";
-            Topic += "/set";
-            if (mqttClient != null && mqttClient.IsConnected)
-            {
-                mqttClient.Publish(Topic, Encoding.UTF8.GetBytes(Messaggio));
-            }
-            timer3.Stop();
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-
+           // timer1.Stop();
+            mqttClient.Disconnect();
         }
     }
 }

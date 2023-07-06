@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D0CC7250-1345-4757-B69E-EB312E34B48B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ListaTopic</RootNamespace>
-    <AssemblyName>ListaTopic</AssemblyName>
+    <RootNamespace>GestioneLuci</RootNamespace>
+    <AssemblyName>GestioneLuci</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,7 +35,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>lightbulb_on.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoUpdateDll">
+      <HintPath>..\..\AutoUpdateC#\AutoUpdateDll\bin\Release\AutoUpdateDll.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -55,6 +61,12 @@
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="NbFramework">
+      <HintPath>..\..\GesQ\gesq3\gesq3\gesqNuovo\bin\Debug\NbFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="NbFrameworkNoGUI">
+      <HintPath>..\..\GesQ\gesq3\gesq3\gesqNuovo\bin\Debug\NbFrameworkNoGUI.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -106,6 +118,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Dati.cs" />
+    <Compile Include="DPI_Check.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +130,18 @@
     </Compile>
     <Compile Include="frmComandi.Designer.cs">
       <DependentUpon>frmComandi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestioneConfigurazioni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestioneConfigurazioni.designer.cs">
+      <DependentUpon>frmGestioneConfigurazioni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestioneSinglaLuce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestioneSinglaLuce.designer.cs">
+      <DependentUpon>frmGestioneSinglaLuce.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMagazzino.cs">
       <SubType>Form</SubType>
@@ -159,6 +184,12 @@
     <EmbeddedResource Include="frmComandi.resx">
       <DependentUpon>frmComandi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGestioneConfigurazioni.resx">
+      <DependentUpon>frmGestioneConfigurazioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestioneSinglaLuce.resx">
+      <DependentUpon>frmGestioneSinglaLuce.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMagazzino.resx">
       <DependentUpon>frmMagazzino.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +214,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="config.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
@@ -199,6 +233,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Pubblica.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="update.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -206,6 +246,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lightbulb_on.ico" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -216,15 +257,20 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="Resources\4058075293298.jpg" />
-    <Content Include="Resources\control-panel %281%29.png" />
-    <Content Include="Resources\LampadinaAccesa.jpg">
+    <None Include="Resources\4058075293298.jpg" />
+    <None Include="Resources\lightbulb.png" />
+    <None Include="Resources\lightbulb_on.png" />
+    <None Include="Resources\piantina.png" />
+    <None Include="Resources\piantina_bn.png" />
+    <None Include="Resources\piantina1.png" />
+    <None Include="Resources\spento.png" />
+    <None Include="Resources\acceso1.png" />
+    <Content Include="Resources\LampadinaAccesa.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\LampadinaSpenta.jpg">
+    <Content Include="Resources\LampadinaSpenta.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Pannello.jpg" />
     <Content Include="Varie\Prompt.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -243,5 +289,8 @@
   <Import Project="..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.5\build\System.Text.Json.targets')" />
   <PropertyGroup>
     <PreBuildEvent>copy "$(ProjectDir)Properties\licenses_vuoto.licx" "$(ProjectDir)Properties\licenses.licx"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>call "$(TargetDir)Pubblica.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>

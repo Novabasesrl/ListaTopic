@@ -10,7 +10,7 @@ using System.Data.Objects;
 
 
 
-namespace ListaTopic
+namespace GestioneLuci
 {
 #if DEBUGSQL
     public class GesQEntitiesTraced : GesQEntities1

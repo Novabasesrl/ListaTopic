@@ -16,25 +16,28 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static ListaTopic.frmMagazzino;
+using static GestioneLuci.frmMagazzino;
 using System.Threading;
+using Button = System.Windows.Forms.Button;
 
 
-namespace ListaTopic
+namespace GestioneLuci
 {
     public partial class frmMagazzino : Form
     {
 
 
 
-        private double New_W = 0;
-        private double New_H = 0;
+        private double LarghezzaIniziale = 0;
+        private double AltezzaIniziale = 0;
 
         private bool m_bEvitaResize = false;
 
         clsConn Conn;
         List<configurazioni_luci> Lista = new List<configurazioni_luci>();
-        List<ucBottoneLuce> TuttiIBottoni = new List<ucBottoneLuce>();
+
+        Dictionary<ucBottoneLuce, Tuple<double, double>> TuttiGliUserBottone = new Dictionary<ucBottoneLuce, Tuple<double, double>>();
+        Dictionary<Button, Tuple<double, double>> TuttiBottone = new Dictionary<Button, Tuple<double, double>>();
 
 
         public frmMagazzino()
@@ -52,20 +55,42 @@ namespace ListaTopic
             ucLuceCorridoioMagazzino.Tag = "R1_A052";
             ucLuceBagnoMagazzino.Tag = "R1_A053";
 
+            LarghezzaIniziale = pbSfondo.Size.Width;
+            AltezzaIniziale = pbSfondo.Size.Height;
+
+
+            TuttiBottoni_Add(btnPianoInferiore);
+            TuttiBottoni_Add(btnPianoSuperiore);
 
             // Aggiungi tutti
-            TuttiIBottoni.Add(ucLuceMagazzino);
-            TuttiIBottoni.Add(ucLuceLaboratorio);
-            TuttiIBottoni.Add(ucLuceServer);
-            TuttiIBottoni.Add(ucLuceCorridoioMagazzino);
-            TuttiIBottoni.Add(ucLuceBagnoMagazzino);
+            TuttiGliUserBottoni_Add(ucLuceMagazzino);
+            TuttiGliUserBottoni_Add(ucLuceLaboratorio);
+            TuttiGliUserBottoni_Add(ucLuceServer);
+            TuttiGliUserBottoni_Add(ucLuceCorridoioMagazzino);
+            TuttiGliUserBottoni_Add(ucLuceBagnoMagazzino);
 
-            New_W = pictureBox1.Size.Width;
-            New_H = pictureBox1.Size.Height;
+    
 
             m_bEvitaResize = false;
 
             Conn = new clsConn();
+        }
+
+
+
+        private void TuttiGliUserBottoni_Add(ucBottoneLuce ub)
+        {
+            double PosX = ub.Location.X / LarghezzaIniziale;
+            double PosY = ub.Location.Y / AltezzaIniziale;
+            TuttiGliUserBottone.Add(ub, new Tuple<double, double>(PosX, PosY));
+        }
+
+
+        private void TuttiBottoni_Add(Button ub)
+        {
+            double PosX = ub.Location.X / LarghezzaIniziale;
+            double PosY = ub.Location.Y / AltezzaIniziale;
+            TuttiBottone.Add(ub, new Tuple<double, double>(PosX, PosY));
         }
 
         private void AggiornaTasto(Dati ilDato)
@@ -73,9 +98,9 @@ namespace ListaTopic
             //ucBottoneLuce ilBottone = TuttiIBottoni.Where(uniquieid = ilDato.unique_id).first;
             //ucBottoneLuce ilBottone = TuttiIBottoni.Where(TuttiIBottoni.ToList(Tag) = ilDato.unique_id).first;
 
-            List<ucBottoneLuce> lstBott = TuttiIBottoni.Where(a => a.Tag == null).ToList();
+            List<ucBottoneLuce> lstBott = TuttiGliUserBottone.Keys.Where(a => a.Tag == null).ToList();
 
-            ucBottoneLuce ilBottone = TuttiIBottoni.Where(a => a.Tag.ToString() == ilDato.unique_id).FirstOrDefault();
+            ucBottoneLuce ilBottone = TuttiGliUserBottone.Keys.Where(a => a.Tag.ToString() == ilDato.unique_id).FirstOrDefault();
 
             if (ilBottone == null)
             {
@@ -202,52 +227,54 @@ namespace ListaTopic
         {
             if (m_bEvitaResize) return;
 
-            double W = New_W;
-            double H = New_H;
-
-            New_W = pictureBox1.Size.Width;
-            New_H = pictureBox1.Size.Height;
 
 
             // ---------------------- BOTTONE ---------------------
 
-            ResizeButton(btnPianoSuperiore, W, H);
-            ResizeButton(btnPianoInferiore, W, H);
+            ResizeButton(btnPianoSuperiore);
+            ResizeButton(btnPianoInferiore);
 
 
             // ------------------------ LUCI MAGAZZINO ---------------------------
 
-            ResizeUserControl(ucLuceMagazzino, W, H);
-            ResizeUserControl(ucLuceLaboratorio, W, H);
-            ResizeUserControl(ucLuceServer, W, H);
-            ResizeUserControl(ucLuceCorridoioMagazzino, W, H);
-            ResizeUserControl(ucLuceBagnoMagazzino, W, H);
+            ResizeUserControl(ucLuceMagazzino);
+            ResizeUserControl(ucLuceLaboratorio);
+            ResizeUserControl(ucLuceServer);
+            ResizeUserControl(ucLuceCorridoioMagazzino);
+            ResizeUserControl(ucLuceBagnoMagazzino);
 
         }
 
 
-        private void ResizeUserControl(UserControl us, double W, double H)
+
+
+        private void ResizeUserControl(ucBottoneLuce us)
         {
-            double X = us.Location.X;
-            double Y = us.Location.Y;
+            double Larghezza = pbSfondo.Size.Width;
+            double Altezza = pbSfondo.Size.Height;
 
-            double New_X = (New_W / W) * X;
-            double New_Y = (New_H / H) * Y;
 
-            us.Location = new Point((int)New_X, (int)New_Y);
+            double New_X = TuttiGliUserBottone[us].Item1 * Larghezza;
+            double New_Y = TuttiGliUserBottone[us].Item2 * Altezza;
+
+            if (New_X != 0 && New_Y != 0) us.Location = new Point((int)New_X, (int)New_Y);
+
+            Console.WriteLine($" New_X:{New_X} New_Y:{New_Y}");
+
         }
 
-
-        private void ResizeButton(System.Windows.Forms.Button btn, double W, double H)
+        private void ResizeButton(System.Windows.Forms.Button btn)
         {
-            double X = btn.Location.X;
-            double Y = btn.Location.Y;
+            double Larghezza = pbSfondo.Size.Width;
+            double Altezza = pbSfondo.Size.Height;
 
-            double New_X = (New_W / W) * X;
-            double New_Y = (New_H / H) * Y;
+            double New_X = TuttiBottone[btn].Item1 * Larghezza;
+            double New_Y = TuttiBottone[btn].Item2 * Altezza;
 
-            btn.Location = new Point((int)New_X, (int)New_Y);
+            if (New_X != 0 && New_Y != 0) btn.Location = new Point((int)New_X, (int)New_Y);
         }
+
+
 
 
         private void ucLuceMagazzino_Click(object sender, EventArgs e)

@@ -16,12 +16,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static GestioneLuci.Form1;
 using System.Threading;
 
 namespace GestioneLuci
 {
-    public partial class Form1 : Form
+    public partial class frmGestioneConfigurazioni : Form
     {
 
 
@@ -29,7 +28,7 @@ namespace GestioneLuci
         List<configurazioni_luci> Lista = new List<configurazioni_luci> ();
 
 
-        public Form1()
+        public frmGestioneConfigurazioni()
         {
             InitializeComponent();
             Conn = new clsConn();

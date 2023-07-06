@@ -16,10 +16,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static ListaTopic.Form1;
+using static GestioneLuci.frmGestioneSinglaLuce;
 using System.Threading;
 
-namespace ListaTopic
+namespace GestioneLuci
 {
     public partial class ucBottoneLuce : UserControl
     {
@@ -54,11 +54,11 @@ namespace ListaTopic
         {
             if (Acceso == true)
             {
-                this.pictureBox1.BackgroundImage = System.Drawing.Image.FromFile("Resources\\LampadinaAccesa.jpg");
+                this.pictureBox1.BackgroundImage = System.Drawing.Image.FromFile("Resources\\LampadinaAccesa.png");
             }
             else
             {
-                this.pictureBox1.BackgroundImage = System.Drawing.Image.FromFile("Resources\\LampadinaSpenta.jpg");
+                this.pictureBox1.BackgroundImage = System.Drawing.Image.FromFile("Resources\\LampadinaSpenta.png");
             }
         }
 
