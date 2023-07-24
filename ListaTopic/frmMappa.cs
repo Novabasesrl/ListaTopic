@@ -32,8 +32,8 @@ namespace GestioneLuci
     public partial class frmMappa : Form
     {
 
-        private double New_W = 0;
-        private double New_H = 0;
+        private double Window_W = 0;
+        private double Window_H = 0;
 
         private bool m_bEvitaResize = false;
         //public string Percentuale;
@@ -45,7 +45,7 @@ namespace GestioneLuci
 
         public frmMappa()
         {
-            gesq3.DPI_check.Check((_Process_DPI_Awareness)clsFileIni.GetIniStringXml("DPI", 0));
+            //gesq3.DPI_check.Check((_Process_DPI_Awareness)clsFileIni.GetIniStringXml("DPI", 0));
             clsLogger.Zippa();
             this.Text = clsFileIni.GetIniStringXml("Applicazione.Nome", "Gestione Luci") + " - " + clsFileIni.GetIniStringXml("Cliente.Nome", "Novabase srl") + " - " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             ControllaVersione(false);
@@ -97,52 +97,60 @@ namespace GestioneLuci
             ucLuceBagnoMagazzino.Tag = "R1_A053";
 
 
-            // Aggiungi tutti
-            TuttiIBottoni.Add(ucLuceMagazzino);
-            TuttiIBottoni.Add(ucLuceLaboratorio);
-            TuttiIBottoni.Add(ucLuceServer);
-            TuttiIBottoni.Add(ucLuceCorridoioMagazzino);
-            TuttiIBottoni.Add(ucLuceBagnoMagazzino);
-
+            Window_W = this.Width;
+            Window_H = this.Height;
 
             // Aggiungi tutti
-            TuttiIBottoni.Add(ucLuceLedSalaRiunioni);
-            TuttiIBottoni.Add(ucLuceLampadario);
-            TuttiIBottoni.Add(ucLuceCucina);
-            TuttiIBottoni.Add(ucFarettiAurelio);
-            TuttiIBottoni.Add(ucScrivaniaAurelio);
-            TuttiIBottoni.Add(ucClaudioSopra);
-            TuttiIBottoni.Add(ucClaudioSotto1);
-            TuttiIBottoni.Add(ucClaudioSotto2);
-            TuttiIBottoni.Add(ucFarettiClaudio);
-            TuttiIBottoni.Add(ucFarettiUffici12);
-            TuttiIBottoni.Add(ucFarettiUffici34);
-            TuttiIBottoni.Add(ucScrivaniaGianluca);
-            TuttiIBottoni.Add(ucLuceLucernario);
-            TuttiIBottoni.Add(ucLuceDmitryUp);
-            TuttiIBottoni.Add(ucLuceDmitryDown1);
-            TuttiIBottoni.Add(ucLuceDmitryDown2);
-            TuttiIBottoni.Add(ucScrivaniaMattia);
-            TuttiIBottoni.Add(ucScrivaniaPaolo);
-            TuttiIBottoni.Add(ucLedReception);
-            TuttiIBottoni.Add(ucLuciScrivaniaStampanteAnna);
-            TuttiIBottoni.Add(ucScrivaniaAnna);
-            TuttiIBottoni.Add(ucScrivaniaDoraSopra);
-            TuttiIBottoni.Add(ucScrivaniaDoraSotto);
-            TuttiIBottoni.Add(ucScrivaniaDoraSotto2);
-            TuttiIBottoni.Add(ucFarettiLedReception);
-            TuttiIBottoni.Add(ucLuceAscensore);
-            TuttiIBottoni.Add(ucLuceSalaQuadro);
-            TuttiIBottoni.Add(ucFioriera);
-            TuttiIBottoni.Add(ucLuceLedScale);
-            TuttiIBottoni.Add(ucLuceAntiBagno);
-            TuttiIBottoni.Add(ucLuceBagno);
-            TuttiIBottoni.Add(ucLuceSpecchioBagno);
-            TuttiIBottoni.Add(ucLuceFuoriBagno);
-            TuttiIBottoni.Add(ucSpecchioAntiBagno);
+            TuttiIBottoni_Add(ucLuceMagazzino);
+            TuttiIBottoni_Add(ucLuceLaboratorio);
+            TuttiIBottoni_Add(ucLuceServer);
+            TuttiIBottoni_Add(ucLuceCorridoioMagazzino);
+            TuttiIBottoni_Add(ucLuceBagnoMagazzino);
 
-            New_W = pictureBox1.Size.Width;
-            New_H = pictureBox1.Size.Height;
+
+            // Aggiungi tutti
+            TuttiIBottoni_Add(ucLuceLedSalaRiunioni);
+            TuttiIBottoni_Add(ucLuceLampadario);
+            TuttiIBottoni_Add(ucLuceCucina);
+            TuttiIBottoni_Add(ucFarettiAurelio);
+            TuttiIBottoni_Add(ucScrivaniaAurelio);
+            TuttiIBottoni_Add(ucClaudioSopra);
+            TuttiIBottoni_Add(ucClaudioSotto1);
+            TuttiIBottoni_Add(ucClaudioSotto2);
+            TuttiIBottoni_Add(ucFarettiClaudio);
+            TuttiIBottoni_Add(ucFarettiUffici12);
+            TuttiIBottoni_Add(ucFarettiUffici34);
+            TuttiIBottoni_Add(ucScrivaniaGianluca);
+            TuttiIBottoni_Add(ucLuceLucernario);
+            TuttiIBottoni_Add(ucLuceDmitryUp);
+            TuttiIBottoni_Add(ucLuceDmitryDown1);
+            TuttiIBottoni_Add(ucLuceDmitryDown2);
+            TuttiIBottoni_Add(ucScrivaniaMattia);
+            TuttiIBottoni_Add(ucScrivaniaPaolo);
+            TuttiIBottoni_Add(ucLedReception);
+            TuttiIBottoni_Add(ucLuciScrivaniaStampanteAnna);
+            TuttiIBottoni_Add(ucScrivaniaAnna);
+            TuttiIBottoni_Add(ucScrivaniaDoraSopra);
+            TuttiIBottoni_Add(ucScrivaniaDoraSotto);
+            TuttiIBottoni_Add(ucScrivaniaDoraSotto2);
+            TuttiIBottoni_Add(ucFarettiLedReception);
+            TuttiIBottoni_Add(ucLuceAscensore);
+            TuttiIBottoni_Add(ucLuceSalaQuadro);
+            TuttiIBottoni_Add(ucFioriera);
+            TuttiIBottoni_Add(ucLuceLedScale);
+            TuttiIBottoni_Add(ucLuceAntiBagno);
+            TuttiIBottoni_Add(ucLuceBagno);
+            TuttiIBottoni_Add(ucLuceSpecchioBagno);
+            TuttiIBottoni_Add(ucLuceFuoriBagno);
+            TuttiIBottoni_Add(ucSpecchioAntiBagno);
+            
+
+            foreach (Control uu in TuttiIBottoni)
+            {
+      //          uu.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+            }
+
+
 
             m_bEvitaResize = false;
 
@@ -152,6 +160,12 @@ namespace GestioneLuci
 
         }
 
+        private void TuttiIBottoni_Add(ucBottoneLuce bl)
+        {
+
+            bl.Tag = new Tuple<double, double>( bl.Location.X / Window_W, bl.Location.Y / Window_H);
+            TuttiIBottoni.Add(bl);
+        }
 
         public void ControllaVersione(bool bAzzeraParametri)
         {
@@ -258,7 +272,7 @@ namespace GestioneLuci
             mqttClient.Subscribe(new string[] { "homeassistant/light/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
             mqttClient.ConnectionClosed += MqttClient_ConnectionClosed;
             // Rende la form a schermo intero 
-            WindowState = FormWindowState.Maximized;
+           // WindowState = FormWindowState.Maximized;
         }
 
         private void MqttClient_ConnectionClosed(object sender, EventArgs e)
@@ -356,102 +370,85 @@ namespace GestioneLuci
             pictureBox2.SendToBack();
 
 
-            double W = New_W;
-            double H = New_H;
-
-            New_W = pictureBox1.Size.Width;
-            New_H = pictureBox1.Size.Height;
-
 
             // ------------------------- LUCI SALA RIUNIONI ---------------------------------
 
-            ResizeUserControl(ucLuceLedSalaRiunioni, W, H);
-            ResizeUserControl(ucLuceLampadario, W, H);
-            ResizeUserControl(ucLuceCucina, W, H);
+            ResizeUserControl(ucLuceLedSalaRiunioni);
+            ResizeUserControl(ucLuceLampadario);
+            ResizeUserControl(ucLuceCucina);
 
-            ResizeUserControl(ucFarettiAurelio, W, H);
-            ResizeUserControl(ucScrivaniaAurelio, W, H);
-            ResizeUserControl(ucClaudioSopra, W, H);
-            ResizeUserControl(ucClaudioSotto1, W, H);
-            ResizeUserControl(ucClaudioSotto2, W, H);
-            ResizeUserControl(ucFarettiClaudio, W, H);
+            ResizeUserControl(ucFarettiAurelio);
+            ResizeUserControl(ucScrivaniaAurelio);
+            ResizeUserControl(ucClaudioSopra);
+            ResizeUserControl(ucClaudioSotto1);
+            ResizeUserControl(ucClaudioSotto2);
+            ResizeUserControl(ucFarettiClaudio);
 
 
             // ------------------------- LUCI UFFICIO TECNICO ---------------------------
 
-            ResizeUserControl(ucFarettiUffici12, W, H);
-            ResizeUserControl(ucFarettiUffici34, W, H);
-            ResizeUserControl(ucScrivaniaGianluca, W, H);
-            ResizeUserControl(ucLuceDmitryUp, W, H);
-            ResizeUserControl(ucLuceDmitryDown1, W, H);
-            ResizeUserControl(ucLuceDmitryDown2, W, H);
+            ResizeUserControl(ucFarettiUffici12);
+            ResizeUserControl(ucFarettiUffici34);
+            ResizeUserControl(ucScrivaniaGianluca);
+            ResizeUserControl(ucLuceDmitryUp);
+            ResizeUserControl(ucLuceDmitryDown1);
+            ResizeUserControl(ucLuceDmitryDown2);
 
-            ResizeUserControl(ucScrivaniaMattia, W, H);
-            ResizeUserControl(ucScrivaniaPaolo, W, H);
+            ResizeUserControl(ucScrivaniaMattia);
+            ResizeUserControl(ucScrivaniaPaolo);
 
 
 
             // --------------------------- LUCI RECEPTION -------------------------------
 
-            ResizeUserControl(ucLedReception, W, H);
-            ResizeUserControl(ucLuciScrivaniaStampanteAnna, W, H);
-            ResizeUserControl(ucScrivaniaAnna, W, H);
-            ResizeUserControl(ucScrivaniaDoraSopra, W, H);
-            ResizeUserControl(ucScrivaniaDoraSotto, W, H);
-            ResizeUserControl(ucScrivaniaDoraSotto2, W, H);
-            ResizeUserControl(ucFarettiLedReception, W, H);
-            ResizeUserControl(ucLuceAscensore, W, H);
-            ResizeUserControl(ucLuceSalaQuadro, W, H);
-            ResizeUserControl(ucFioriera, W, H);
-            ResizeUserControl(ucLuceLedScale, W, H);
-            ResizeUserControl(ucLuceLucernario, W, H);
+            ResizeUserControl(ucLedReception);
+            ResizeUserControl(ucLuciScrivaniaStampanteAnna);
+            ResizeUserControl(ucScrivaniaAnna);
+            ResizeUserControl(ucScrivaniaDoraSopra);
+            ResizeUserControl(ucScrivaniaDoraSotto);
+            ResizeUserControl(ucScrivaniaDoraSotto2);
+            ResizeUserControl(ucFarettiLedReception);
+            ResizeUserControl(ucLuceAscensore);
+            ResizeUserControl(ucLuceSalaQuadro);
+            ResizeUserControl(ucFioriera);
+            ResizeUserControl(ucLuceLedScale);
+            ResizeUserControl(ucLuceLucernario);
 
 
 
 
             // ---------------------------- LUCI BAGNO --------------------------------------
 
-            ResizeUserControl(ucLuceAntiBagno, W, H);
-            ResizeUserControl(ucLuceBagno, W, H);
-            ResizeUserControl(ucLuceSpecchioBagno, W, H);
-            ResizeUserControl(ucLuceFuoriBagno, W, H);
-            ResizeUserControl(ucSpecchioAntiBagno, W, H);
+            ResizeUserControl(ucLuceAntiBagno);
+            ResizeUserControl(ucLuceBagno);
+            ResizeUserControl(ucLuceSpecchioBagno);
+            ResizeUserControl(ucLuceFuoriBagno);
+            ResizeUserControl(ucSpecchioAntiBagno);
 
 
 
             // ------------------------ LUCI MAGAZZINO ---------------------------
 
-            ResizeUserControl(ucLuceMagazzino, W, H);
-            ResizeUserControl(ucLuceLaboratorio, W, H);
-            ResizeUserControl(ucLuceServer, W, H);
-            ResizeUserControl(ucLuceCorridoioMagazzino, W, H);
-            ResizeUserControl(ucLuceBagnoMagazzino, W, H);
+            ResizeUserControl(ucLuceMagazzino);
+            ResizeUserControl(ucLuceLaboratorio);
+            ResizeUserControl(ucLuceServer);
+            ResizeUserControl(ucLuceCorridoioMagazzino);
+            ResizeUserControl(ucLuceBagnoMagazzino);
+
+
         }
 
 
-        private void ResizeUserControl(UserControl us, double W, double H)
+        private void ResizeUserControl(UserControl us)
         {
-            double X = us.Location.X;
-            double Y = us.Location.Y;
-
-            double New_X = (New_W / W) * X;
-            double New_Y = (New_H / H) * Y;
+            double New_X = this.Width * ((Tuple<double, double>)us.Tag).Item1;
+            double New_Y = this.Height * ((Tuple<double, double>)us.Tag).Item2;
 
             us.Location = new Point((int)New_X, (int)New_Y);
             us.BringToFront();
             us.Visible = true;
         }
 
-        private void ResizeButton(System.Windows.Forms.Button btn, double W, double H)
-        {
-            double X = btn.Location.X;
-            double Y = btn.Location.Y;
-
-            double New_X = (New_W / W) * X;
-            double New_Y = (New_H / H) * Y;
-
-            btn.Location = new Point((int)New_X, (int)New_Y);
-        }
 
 
         private void ucLuceLampadario_Click(object sender, EventArgs e)
